@@ -4,7 +4,7 @@ NAME=phnoebook
 
 all: $(NAME)
 
-SRC= PhoneBook.cpp Contact.cpp \
+SRC= main.cpp Contact.cpp PhoneBook.cpp  \
 
 OBJ= $(SRC:.cpp=.o)
 
