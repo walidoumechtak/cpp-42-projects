@@ -30,14 +30,13 @@ void    ft_search(PhoneBook pb)
         i++;
     }
     std::cout << "Search (Enter an index): " << std::endl;
-    std::cin >> s_index;
+    std::cin >> s_i;
     if (is_all_digit(s_i) == 0)
     {
         std::cout << "Invalid index" << std::endl;
         return ;
     }
     s_index = atoi(s_i.c_str());
-    std::cout << s_index << std::endl;
     i = 0;
     while (i < pb.get_cpt())
     {
@@ -76,17 +75,20 @@ int main()
         {
             std::cout << "enter the first name : " << std::endl;
             std::cin >> f_n;
+            if (f_n.length() > 10)
+                f_n[9] = '.';
             std::cout << "enter the last name : " << std::endl;
             std::cin >> l_n;
+            if (l_n.length() > 10)
+                l_n[9] = '.';
             std::cout << "enter the nick name : " << std::endl;
             std::cin >> nick_n;
+            if (nick_n.length() > 10)
+                nick_n[9] = '.';
             std::cout << "enter the dark secret : " << std::endl;
             std::cin >> dark_s;
-            // if (f_n[0] == '\0' || l_n[0] == '\0' || nick_n[0] == '\0' || dark_s[0] == '\0')
-            // {
-            //     printf("you shouldn't let any feilds empty\n");
-            //     continue;
-            // }
+            if (dark_s.length() > 10)
+                dark_s[9] = '.';
             pb.add_to_contact(Contact(in, f_n, l_n, nick_n, dark_s));
             in++;
         }

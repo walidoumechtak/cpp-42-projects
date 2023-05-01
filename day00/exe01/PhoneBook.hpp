@@ -4,7 +4,6 @@ class PhoneBook
 {
 
 private:
-    friend int main();
     Contact contact[8];
     static int cpt;
 
