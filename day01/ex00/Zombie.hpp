@@ -8,6 +8,7 @@ class Zombie{
 
 private:
     std::string name;
+    Zombie *z;
 
 public:
     Zombie();
