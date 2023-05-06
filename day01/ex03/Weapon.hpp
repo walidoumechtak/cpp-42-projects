@@ -7,7 +7,7 @@
 class Weapon{
 
 private:
-    std::string type;
+    std::string *type;
 
 public:
     std::string getType();
