@@ -1,5 +1,5 @@
 CPP=c++
-CPPFLAGS=-wall -Wextra -Werror -std=c++98 -fsanitize=address
+CPPFLAGS=-Wall -Wextra -Werror -std=c++98 -fsanitize=address
 NAME=HARL
 
 SRC=main.cpp Harl.cpp\
@@ -14,7 +14,7 @@ all: $(NAME)
 clean:
 	rm -f $(OBJ)
 
-fclean:clean
+fclean: clean
 	rm -f $(NAME)
 
-re:flcean all
+re:fclean all
