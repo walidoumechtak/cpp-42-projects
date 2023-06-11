@@ -3,5 +3,6 @@
 int main()
 {
 
-    Fixed obj(10);
+    Fixed const obj(10);
+    Fixed const c(42.42f);
 }

@@ -7,23 +7,34 @@ Fixed::Fixed(): fixed_p(0)
     std::cout << "Default constructor called" << std::endl;
 }
 
+// int constructor is called 
+
 Fixed::Fixed(const int nb){
     int scaling;
     int conv;
 
     scaling = 1 << frac_b; // 1 << farc_b (8)
     conv = nb * scaling;
+    std::cout << "Int constructor called" << std::endl;
     std::cout << conv << std::endl;
 }
 
-// Fixed::Fixed(const float nb_f)
-// {
-    
-// }
+// float constructor is called 
+
+Fixed::Fixed(const float nb_f)
+{
+    std::cout << "Float constructor called" << std::endl;
+    int scaling;
+    float conv;
+
+    scaling = 1 << frac_b;
+    conv = nb_f * scaling;
+    std::cout << conv << std::endl; 
+}
 
 Fixed::~Fixed()
 {
-    std::cout << "Copy constructor called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits() const
