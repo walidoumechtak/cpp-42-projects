@@ -5,7 +5,7 @@ Contact::Contact()
 {  
 }
 
-Contact::Contact(int in, std::string fn, std::string ln, std::string nn, std::string ds): index(in), f_name(fn), l_name(ln), nick_name(nn), dark_sec(ds)
+Contact::Contact(int in, std::string fn, std::string ln, std::string nn, std::string ph, std::string ds): index(in), f_name(fn), l_name(ln), nick_name(nn), phone(ph), dark_sec(ds)
 {
 }
 

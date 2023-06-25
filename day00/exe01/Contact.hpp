@@ -8,11 +8,12 @@ private:
     std::string f_name;
     std::string l_name;
     std::string nick_name;
+    std::string phone;
     std::string dark_sec;
 
 public:
     Contact();
-    Contact(int in, std::string fn, std::string ln, std::string nn, std::string ds);
+    Contact(int in, std::string fn, std::string ln, std::string nn, std::string phone, std::string ds);
     ~Contact();
     void    to_string(int index, std::string f_name, std::string l_name, std::string nick_name);
     int get_index();

@@ -5,10 +5,13 @@
 int is_all_digit(std::string str)
 {
     int i = 0;
+    int len = str.length();
 
-    while (str.c_str()[i])
+    if (len == 0)
+        return (0);
+    while (i < len)
     {
-        if (!isdigit(str.c_str()[i]))
+        if (!isdigit(str[i]) || str[i] == '\n')
             return (0);
         i++;
     }
@@ -18,8 +21,8 @@ int is_all_digit(std::string str)
 void    ft_search(PhoneBook pb)
 {
     Contact c;
-    std::string s_i;
-    int s_index;
+    std::string input_index;
+    int index;
     int i;
 
     i = 0;
@@ -30,17 +33,17 @@ void    ft_search(PhoneBook pb)
         i++;
     }
     std::cout << "Search (Enter an index): " << std::endl;
-    std::cin >> s_i;
-    if (is_all_digit(s_i) == 0)
+    getline(std::cin, input_index);
+    if (is_all_digit(input_index) == 0)
     {
         std::cout << "Invalid index" << std::endl;
         return ;
     }
-    s_index = atoi(s_i.c_str());
+    index = stoi(input_index);
     i = 0;
     while (i < pb.get_cpt())
     {
-        if (c.get_index() == s_index)
+        if (c.get_index() == index)
         {
             std::cout << "index: " << c.get_index() << std::endl;
             std::cout << "First Name: " << c.get_f_name() << std::endl;
@@ -57,6 +60,12 @@ void    ft_search(PhoneBook pb)
     }
 }
 
+void    transform_string(std::string &str)
+{
+    str = str.substr(0, 10);
+    str[9] = '.';
+}
+
 int main()
 {
     PhoneBook   pb;
@@ -66,36 +75,41 @@ int main()
     std::string l_n;
     std::string nick_n;
     std::string dark_s;
-
+    std::string phone;
+   
     while (1)
-    {
-        std::cout << "Enter one of three commands the program only accepts ADD, SEARCH and EXIT : " << std::endl;
-        std::cin >> str;
+    {   
+        std::cout << "------------------------------------------------------------------------------" << std::endl;
+        std::cout << "| Enter one of three commands the program only accepts 'ADD', 'SEARCH' and 'EXIT' : |" << std::endl;
+        std::cout << "------------------------------------------------------------------------------" << std::endl;
+        std::getline(std::cin, str);
         if (str == "ADD")
         {
-            std::cout << "enter the first name : " << std::endl;
-            std::cin >> f_n;
+            std::cout << "First name : " << std::endl;
+            std::getline(std::cin, f_n);
             if (f_n.length() > 10)
-                f_n[9] = '.';
-            std::cout << "enter the last name : " << std::endl;
-            std::cin >> l_n;
+                transform_string(f_n);
+            std::cout << "Last name : " << std::endl;
+            std::getline(std::cin, l_n);
             if (l_n.length() > 10)
-                l_n[9] = '.';
-            std::cout << "enter the nick name : " << std::endl;
-            std::cin >> nick_n;
+                transform_string(l_n);
+            std::cout << "Nick name : " << std::endl;
+            std::getline(std::cin, nick_n);
             if (nick_n.length() > 10)
-                nick_n[9] = '.';
+                transform_string(nick_n);
+            std::cout << "enter the phone number : " << std::endl;
+            std::getline(std::cin, phone);
+            if (phone.length() > 10)
+                transform_string(phone);
             std::cout << "enter the dark secret : " << std::endl;
-            std::cin >> dark_s;
+            std::getline(std::cin, dark_s);
             if (dark_s.length() > 10)
-                dark_s[9] = '.';
-            pb.add_to_contact(Contact(in, f_n, l_n, nick_n, dark_s));
+                transform_string(dark_s);
+            pb.add_to_contact(Contact(in, f_n, l_n, nick_n, phone, dark_s));
             in++;
         }
         else if (str == "SEARCH") 
-        {
             ft_search(pb);
-        }
         else if (str == "EXIT")
             break;
     }
