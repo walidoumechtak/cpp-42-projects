@@ -10,7 +10,7 @@ private:
     std::string type;
 
 public:
-    std::string getType();
+    std::string getType() const;
     void    setType(std::string T);
     Weapon();
     Weapon(std::string t);

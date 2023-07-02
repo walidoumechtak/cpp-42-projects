@@ -7,7 +7,7 @@ void    HumanB::setWeapon(Weapon *w)
 
 void    HumanB::attack()
 {
-    if (wp != nullptr)
+    if (wp != 0)
         std::cout << name << " attacks with their " << wp->getType() << std::endl;
 }
 
@@ -17,7 +17,7 @@ HumanB::HumanB()
 
 HumanB::HumanB(std::string n): name(n)
 {
-    wp = nullptr;
+    wp = 0;
 }
 
 HumanB::~HumanB()
