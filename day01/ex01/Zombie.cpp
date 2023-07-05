@@ -7,13 +7,16 @@ void    Zombie::announce(void)
 
 Zombie::Zombie()
 {
+   // std::cout << "Consturcor called" << std::endl;
 }
 
 Zombie::Zombie(std::string n) : name(n)
 {
+   // std::cout << "Consturcor called" << std::endl;
 }
 
 Zombie::~Zombie()
 {
+   // std::cout << "Destructor called" << std::endl;
     delete[] zs;
 }
