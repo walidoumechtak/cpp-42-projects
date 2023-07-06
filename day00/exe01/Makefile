@@ -1,4 +1,4 @@
-CPP=c++
+CXX=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98
 NAME=phnoebook
 
@@ -9,7 +9,7 @@ SRC= main.cpp Contact.cpp PhoneBook.cpp  \
 OBJ= $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
-	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)

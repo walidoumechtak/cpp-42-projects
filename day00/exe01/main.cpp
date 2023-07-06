@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp" 
 #include <cctype>
 #include <cstdlib>
+#include <string>
 
 int is_all_digit(std::string str)
 {
@@ -11,7 +12,7 @@ int is_all_digit(std::string str)
         return (0);
     while (i < len)
     {
-        if (!isdigit(str[i]) || str[i] == '\n')
+        if (!isdigit(str[i]))
             return (0);
         i++;
     }
@@ -26,7 +27,7 @@ void    ft_search(PhoneBook pb)
     int i;
 
     i = 0;
-    while (i < pb.get_cpt())
+    while (i < pb.get_cpt()) // cpt == how many contact in our phonebook
     {
         c = pb.get_one_contact(i);
         c.to_string(c.get_index(), c.get_f_name(), c.get_l_name(), c.get_nick_name());
@@ -39,7 +40,7 @@ void    ft_search(PhoneBook pb)
         std::cout << "Invalid index" << std::endl;
         return ;
     }
-    index = stoi(input_index);
+    index = atoi(input_index.c_str());
     i = 0;
     while (i < pb.get_cpt())
     {
@@ -53,7 +54,7 @@ void    ft_search(PhoneBook pb)
         }
         else
         {
-            std::cout << "Oops we couldn't find data with your index" << std::endl;
+            std::cout << "Oops we couldn't find any data with your index !!!!!" << std::endl;
             return;
         }
         i++;

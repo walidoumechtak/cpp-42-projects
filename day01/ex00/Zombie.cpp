@@ -15,5 +15,5 @@ Zombie::Zombie(std::string n) : name(n)
 
 Zombie::~Zombie()
 {
-    std::cout << "good by " << name << std::endl;
+    std::cout << name << " died" << std::endl;
 }

@@ -4,20 +4,20 @@
 #include <string>
 #include <iostream>
 
-class Zombie{
 
+class Zombie
+{
 private:
     std::string name;
-    Zombie *z;
 
 public:
     Zombie();
-    Zombie(Zombie *obj);
     Zombie(std::string n);
     ~Zombie();
     void    announce(void);
-    Zombie* newZombie( std::string name );
-    void randomChump( std::string name );
 };
+
+void    randomChump(std::string name);
+Zombie* newZombie(std::string name);
 
 #endif

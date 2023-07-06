@@ -1,4 +1,6 @@
 #include "Fixed.hpp"
+#include <cmath>
+#include <stdio.h>
 
 const int Fixed::frac_b = 8;
 
@@ -8,28 +10,22 @@ Fixed::Fixed(): fixed_p(0)
 }
 
 // int constructor is called 
-
 Fixed::Fixed(const int nb){
     int scaling;
-    int conv;
 
-    scaling = 1 << frac_b; // 1 << farc_b (8)
-    conv = nb * scaling;
     std::cout << "Int constructor called" << std::endl;
-    std::cout << conv << std::endl;
+    scaling = 1 << frac_b;
+    fixed_p = nb * scaling;
 }
 
 // float constructor is called 
-
 Fixed::Fixed(const float nb_f)
 {
-    std::cout << "Float constructor called" << std::endl;
     int scaling;
-    int conv;
 
+    std::cout << "Float constructor called" << std::endl;
     scaling = 1 << frac_b;
-    conv = nb_f * scaling;
-    std::cout << conv << std::endl; 
+    fixed_p = roundf(nb_f * scaling);
 }
 
 Fixed::~Fixed()
@@ -39,22 +35,18 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits() const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return (fixed_p);
 }
 
 void    Fixed::setRawBits(int const raw)
 {
-    std::cout << "setRawBits member function called" << std::endl;
     fixed_p = raw;
 }
 
 Fixed::Fixed(const Fixed& copy)
 {
     std::cout << "Copy constructor called" << std::endl;
-    //*this = copy; // we use here assignment operator
     this->setRawBits(copy.fixed_p);
-    // this is a pointer to the new objecte
 }
 
 Fixed   &Fixed::operator = (const Fixed &source){
@@ -65,4 +57,25 @@ Fixed   &Fixed::operator = (const Fixed &source){
         this->fixed_p = source.getRawBits();
     }
     return (*this);
+}
+
+// to int and to float function ----------------------------------------------------
+
+float Fixed::toFloat(void) const
+{
+    return ((float)fixed_p / 256);
+}
+
+int Fixed::toInt(void) const
+{
+    return (fixed_p / 256);
+}
+
+// << operator overloading ----------------------------------------------------------
+
+std::ostream& operator<<(std::ostream & os, const Fixed &obj)
+{
+    float res = obj.toFloat();
+    os << res;
+    return (os);
 }

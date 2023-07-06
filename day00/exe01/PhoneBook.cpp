@@ -4,14 +4,7 @@ int  PhoneBook::cpt = 0;
 
 PhoneBook::PhoneBook()
 {
-    int i;
 
-    i = 0;
-    while (i < 8)
-    {
-        PhoneBook::contact[i] = Contact();
-        i++;
-    }
 }
 
 PhoneBook::~PhoneBook()
