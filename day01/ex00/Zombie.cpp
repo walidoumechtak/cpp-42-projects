@@ -5,7 +5,7 @@ void    Zombie::announce(void)
     std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl; 
 }
 
-Zombie::Zombie()
+Zombie::Zombie() : name("walo")
 {
 }
 

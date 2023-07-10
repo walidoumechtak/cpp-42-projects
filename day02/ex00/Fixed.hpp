@@ -12,17 +12,11 @@ class Fixed
     
     public:
         Fixed();
-        Fixed(const int nb);
-        Fixed(const float nb_f);
         Fixed(const Fixed &copy); // copy default constructor
         Fixed &operator = (const Fixed &source); // assignment operator
         ~Fixed();
         int getRawBits( void ) const;
         void setRawBits( int const raw );
-        float toFloat(void) const;
-        int toInt(void) const;
 };
-
-std::ostream& operator<<(std::ostream & os, const Fixed &obj);
 
 #endif

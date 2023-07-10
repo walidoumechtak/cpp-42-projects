@@ -28,7 +28,6 @@ void    Harl::complain(std::string level)
     c add_comp[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     Harl obj;
     int i = 0;
-
     while (COMP[i] != level)
     {
         i++;
