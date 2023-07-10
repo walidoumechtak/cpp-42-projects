@@ -15,5 +15,5 @@ Zombie::Zombie(std::string n) : name(n)
 
 Zombie::~Zombie()
 {
-    delete[] zs;
+    
 }

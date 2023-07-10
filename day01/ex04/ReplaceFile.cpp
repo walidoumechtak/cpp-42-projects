@@ -19,9 +19,7 @@ void    replace_s1_by_s2(std::string str, std::string s1, std::string s2, std::f
 void    ReplaceFile::ft_replace()
 {
     std::string line;
-    int sizeLine;
-
-    sizeLine = line.length();
+    
     open_file(fileName, "in");
     open_file(newFileName, "app");
 
@@ -41,7 +39,7 @@ void    ReplaceFile::open_file(std::string fileN, std::string flag)
         nFile.open(fileN, std::ios::out | std::ios::app);
         if (!nFile.is_open())
         {
-            std::cerr << "Error: the file no exist or there is a probleme while openinig the file" << std::endl;
+            std::cerr << "Error: the file not exist or there is a probleme while openinig the file" << std::endl;
             exit(0);
         }
 
@@ -51,7 +49,7 @@ void    ReplaceFile::open_file(std::string fileN, std::string flag)
         oFile.open(fileN, std::ios::in);
         if (!oFile.is_open())
         {
-            std::cerr << "Error: the file no exist or there is a probleme while openinig the file" << std::endl;
+            std::cerr << "Error: the file not exist or there is a probleme while openinig the file" << std::endl;
             exit(0);
         }
     }
