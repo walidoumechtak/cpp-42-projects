@@ -1,8 +1,8 @@
 #include "HumanB.hpp"
 
-void    HumanB::setWeapon(Weapon *w)
+void    HumanB::setWeapon(Weapon &w)
 {
-    wp = w;
+    wp = &w;
 }
 
 void    HumanB::attack()
