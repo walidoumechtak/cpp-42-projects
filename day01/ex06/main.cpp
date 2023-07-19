@@ -6,6 +6,7 @@ int main(int ac, char **av)
     if (ac == 1)
     {
         std::cerr << "Number of argument is not correct !!!" << std::endl;
+        return (0);
     }
     o.complain(av[1]);
 }

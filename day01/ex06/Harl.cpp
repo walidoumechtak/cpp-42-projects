@@ -20,53 +20,28 @@ void    Harl::error(void)
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-int convert_level_toint(std::string level)
-{
-    if (level == "DEBUG")
-        return (0);
-    else if (level == "INFO")
-        return (1);
-    else if (level == "WARNING")
-        return (1);
-    else if (level == "ERROR")
-        return (3);
-    return (-1);
-}
-
 void    Harl::complain(std::string level)
 {
-    int LEX;
-    typedef void    (Harl::*ptr)();
-    ptr func_ptr[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    int i;
-
-    i = 0;
-    LEX = convert_level_toint(level);
-    switch (LEX)
+    std::string LIST[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int i = 0;
+    for (; i < 4; i++)
+        if (LIST[i] == level)
+            break;
+            
+    switch (i)
     {
     case 0:
-        i = 0;
-        break;
+        debug();
     case 1:
-        i = 1;
-        break;
+        info();
     case 2:
-        i = 2;
-        break;
+        warning();
     case 3:
-        i = 3;
+        error();
         break;
     default:
-        i = LEX;
         std::cerr << "[ Probably complaining about insignificant problems ]" << std::endl;
         break;
-    }
-    Harl obj;
-    while (i < 4 && i != -1)
-    {
-        printf("%d\n", i);
-        (obj.*func_ptr[i])();
-        i++;
     }
 }
 
