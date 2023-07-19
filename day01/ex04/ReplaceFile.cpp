@@ -5,8 +5,7 @@
 void    replace_s1_by_s2(std::string str, std::string s1, std::string s2, std::fstream &nFile)
 {
     int pos;
-    (void)s2;
-    pos = str.find(s1);
+
     while ((pos = str.find(s1)) != -1)
     {
         str.erase(pos, s1.length());
@@ -62,43 +61,6 @@ void    ReplaceFile::close_files()
     oFile.close();
     nFile.close();
 }
-
-// ======== start setter function ==========
-void    ReplaceFile::setFileName(std::string fn)
-{
-    fileName = fn;
-}
-
-void    ReplaceFile::setS1(std::string ss1)
-{
-    s1 = ss1;
-}
-
-void    ReplaceFile::setS2(std::string ss2)
-{
-    s2 = ss2;
-}
-// ======== end setter function ============
-
-
-// ----- start getter function ----------
-std::string ReplaceFile::get_filename()
-{
-    return (fileName);
-}
-
-std::string ReplaceFile::get_s1()
-{
-    return (s1);
-}
-
-std::string ReplaceFile::get_s2()
-{
-    return (s2);
-}
-// ----- end getter function ------------
-
-
 
 // ******* construcors and destructor *******
 ReplaceFile::ReplaceFile()
