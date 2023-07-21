@@ -27,14 +27,14 @@ int Fixed::toInt(void) const
 
 Fixed::Fixed(): fixed_p(0)
 {
-    std::cout << "Default constructor called" << std::endl;
+   // std::cout << "Default constructor called" << std::endl;
 }
 
 // int constructor is called 
 Fixed::Fixed(const int nb){
     int scaling;
 
-    std::cout << "Int constructor called" << std::endl;
+    //std::cout << "Int constructor called" << std::endl;
     scaling = 1 << frac_b;
     fixed_p = nb * scaling;
 }
@@ -44,25 +44,25 @@ Fixed::Fixed(const float nb_f)
 {
     int scaling;
 
-    std::cout << "Float constructor called" << std::endl;
+   // std::cout << "Float constructor called" << std::endl;
     scaling = 1 << frac_b;
     fixed_p = roundf(nb_f * scaling);
 }
 
 Fixed::Fixed(const Fixed &obj)
 {
-    std::cout << "Copy constructor called" << std::endl;
+   // std::cout << "Copy constructor called" << std::endl;
     this->fixed_p = obj.fixed_p;
 }
 
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl;
+   // std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &source)
 {
-    std::cout << "copy assignement operator called" << std::endl;
+  //  std::cout << "copy assignement operator called" << std::endl;
     if (this != &source)
     {
         this->fixed_p = source.fixed_p;
@@ -148,21 +148,52 @@ bool Fixed::operator != (const Fixed &obj)
 
 // ========================== increment and decrement overloading ======================
 
-Fixed   &Fixed::operator++() // ++obj
+Fixed   &Fixed::operator++() // ++obj --> pre-increment
 {
    (fixed_p)++;
     return *this;
 }
 
-Fixed Fixed::operator ++ (int) // obj++
+Fixed Fixed::operator ++ (int) // obj++  --> post-increment
 {
-    
     Fixed new_o = *this;
     ++fixed_p;
     return (new_o);
 }
 
-// ========================== increment and decrement overloading ======================
+// ========================== min and max static member functions ======================
+
+ Fixed  &Fixed::min(Fixed& n1, Fixed& n2)
+{
+    if (n1.fixed_p < n2.fixed_p)
+        return (n1);
+    else
+        return (n2);
+}
+
+const Fixed  &Fixed::min(const Fixed& n1, const Fixed& n2)
+{
+    if (n1.fixed_p < n2.fixed_p)
+        return (n1);
+    else
+        return (n2);
+}
+
+Fixed &Fixed::max(Fixed& n1, Fixed& n2)
+{
+    if (n1.fixed_p < n2.fixed_p)
+        return (n1);
+    else
+        return (n2);
+}
+
+const Fixed &Fixed::max(const Fixed& n1, const Fixed& n2)
+{
+    if (n1.fixed_p > n2.fixed_p)
+        return (n1);
+    else
+        return (n2);
+}
 
 // << operator overloading ----------------------------------------------------------
 std::ostream& operator<<(std::ostream & os, const Fixed &obj)
