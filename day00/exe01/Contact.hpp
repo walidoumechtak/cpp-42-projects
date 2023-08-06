@@ -21,4 +21,5 @@ public:
     std::string get_l_name();
     std::string get_nick_name();
     std::string get_dark_sec();
+    std::string get_phone();
 };

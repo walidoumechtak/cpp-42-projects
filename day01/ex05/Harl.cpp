@@ -23,12 +23,12 @@ void    Harl::error(void)
 
 void    Harl::complain(std::string level)
 {
-    std::string COMP[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    typedef void (Harl::*c)();
-    c add_comp[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    std::string cases[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    typedef void (Harl::*function_pointer)();
+    function_pointer my_addr_funcs[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     Harl obj;
     int i = 0;
-    while (COMP[i] != level)
+    while (cases[i] != level)
     {
         i++;
         if (i == 4)
@@ -37,7 +37,7 @@ void    Harl::complain(std::string level)
             return;
         }
     }
-    (obj.*add_comp[i])();
+    (obj.*(my_addr_funcs[i]))();
 }
 
 Harl::Harl()

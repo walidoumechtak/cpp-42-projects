@@ -4,5 +4,5 @@ int main()
 {
     Harl o;
 
-    o.complain("DEBUG");
+    o.complain("WARNING");
 }

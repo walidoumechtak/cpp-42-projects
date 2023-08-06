@@ -19,13 +19,9 @@ int main(int ac, char **av)
     {
         for (int j = 0; av[i][j]; j++)
         {
-             if (av[i][j] != ' ')
-                av[i][j] = toupper(av[i][j]);
+            av[i][j] = toupper(av[i][j]);
         }
         std::cout << av[i];
-
-        if (i != ac - 1)
-            std::cout << " ";
     }
     std::cout << std::endl;
     return (0);

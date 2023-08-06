@@ -84,17 +84,17 @@ Fixed Fixed::operator-(const Fixed &obj)
     return (new_o) ;
 }
 
-Fixed Fixed::operator*(const Fixed &obj)
+Fixed Fixed::operator * (const Fixed &obj)
 {
     Fixed new_o;
-    new_o.setRawBits(this->fixed_p * obj.fixed_p);
+    new_o.setRawBits(this->toFloat() * obj.toFloat());
     return (new_o);
 }
 
-Fixed Fixed::operator/(const Fixed &obj)
+Fixed Fixed::operator / (const Fixed &obj)
 {
     Fixed new_o;
-    new_o.setRawBits(this->fixed_p / obj.fixed_p);
+    new_o.setRawBits(this->fixed_p >> 8 / obj.fixed_p >> 8);
     return (new_o);
 }
 
@@ -156,9 +156,26 @@ Fixed   &Fixed::operator++() // ++obj --> pre-increment
 
 Fixed Fixed::operator ++ (int) // obj++  --> post-increment
 {
-    Fixed new_o = *this;
+    Fixed old;
+    
+    old = *this;
     ++fixed_p;
-    return (new_o);
+    return (old);
+}
+
+Fixed   &Fixed::operator--()
+{
+    this->fixed_p--;
+    return (*this);
+}
+
+Fixed   Fixed::operator-- (int)
+{
+    Fixed old;
+
+    old = *this;
+    this->fixed_p--;
+    return (old);
 }
 
 // ========================== min and max static member functions ======================

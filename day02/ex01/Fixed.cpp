@@ -9,29 +9,24 @@ Fixed::Fixed(): fixed_p(0)
     std::cout << "Default constructor called" << std::endl;
 }
 
-// int constructor is called 
-Fixed::Fixed(const int nb){
-    int scaling;
-
+Fixed::Fixed(const int nb)
+{
     std::cout << "Int constructor called" << std::endl;
-    scaling = 1 << frac_b;
-    fixed_p = nb * scaling;
+    fixed_p = nb << frac_b;
 }
 
-// float constructor is called 
 Fixed::Fixed(const float nb_f)
 {
-    int scaling;
-
     std::cout << "Float constructor called" << std::endl;
-    scaling = 1 << frac_b;
-    fixed_p = roundf(nb_f * scaling);
+    fixed_p = roundf(nb_f * 256);
 }
 
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
 }
+
+//------------------------------------  end constr and destruc ---------------------------
 
 int Fixed::getRawBits() const
 {
@@ -43,10 +38,12 @@ void    Fixed::setRawBits(int const raw)
     fixed_p = raw;
 }
 
+//------------------------------------  end getter and setter ---------------------------
+
 Fixed::Fixed(const Fixed& copy)
 {
     std::cout << "Copy constructor called" << std::endl;
-    this->setRawBits(copy.fixed_p);
+    *this = copy;
 }
 
 Fixed   &Fixed::operator = (const Fixed &source){
@@ -68,7 +65,7 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-    return (fixed_p / 256);
+    return ((fixed_p / 256));  // fixed_p >> getRawBits(); == 8
 }
 
 // << operator overloading ----------------------------------------------------------

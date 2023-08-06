@@ -1,13 +1,13 @@
 #include "HumanB.hpp"
 
-void    HumanB::setWeapon(Weapon *w)
+void    HumanB::setWeapon(Weapon &w)
 {
-    wp = w;
+    wp = &w;
 }
 
 void    HumanB::attack()
 {
-    if (wp != nullptr)
+    if (wp != 0)
         std::cout << name << " attacks with their " << wp->getType() << std::endl;
 }
 
@@ -15,9 +15,8 @@ HumanB::HumanB()
 {
 }
 
-HumanB::HumanB(std::string n): name(n)
+HumanB::HumanB(std::string n): name(n), wp(0)
 {
-    wp = nullptr;
 }
 
 HumanB::~HumanB()

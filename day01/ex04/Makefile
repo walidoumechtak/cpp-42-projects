@@ -1,6 +1,6 @@
 CPP=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98 -fsanitize=address
-NAME=WARE
+NAME=sed
 
 SRC=main.cpp ReplaceFile.cpp\
 

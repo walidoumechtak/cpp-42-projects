@@ -1,6 +1,6 @@
 #include "Zombie.hpp"
 
-int main()
+int main(void)
 {
     Zombie *zo_in_heap = newZombie("heap");
     randomChump("stack");

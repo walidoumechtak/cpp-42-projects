@@ -33,6 +33,8 @@ class Fixed
         bool operator != (const Fixed &obj);
         Fixed &operator ++ ();     
         Fixed operator ++ (int);
+        Fixed &operator -- ();
+        Fixed operator -- (int);
         static const Fixed &min(const Fixed& n1, const Fixed& n2);
         static const Fixed &max(const Fixed& n1, const Fixed& n2);
         static Fixed &min(Fixed& n1, Fixed& n2);

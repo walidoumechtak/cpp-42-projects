@@ -14,7 +14,7 @@ class Fixed
         Fixed();
         Fixed(const int nb);
         Fixed(const float nb_f);
-        Fixed(const Fixed &copy); // copy default constructor
+        Fixed(const Fixed &copy); // copy constructor
         Fixed &operator = (const Fixed &source); // assignment operator
         ~Fixed();
         int getRawBits( void ) const;

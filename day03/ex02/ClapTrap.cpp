@@ -6,12 +6,12 @@ ClapTrap::ClapTrap()
     health = 10;
     e_point = 10;
     a_damage = 0;
-    std::cout << "Default [ClapTrap] constructor called" << std::endl;
+    std::cout << "Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string n) : name(n)
 {
-    std::cout << "[ClapTrap] Constructor called" << std::endl;
+    std::cout << "Constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()

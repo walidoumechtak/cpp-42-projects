@@ -27,9 +27,7 @@ void    Fixed::setRawBits(int const raw)
 Fixed::Fixed(const Fixed& copy)
 {
     std::cout << "Copy constructor called" << std::endl;
-    //*this = copy; // we use here assignment operator
-    this->setRawBits(copy.fixed_p);
-    // this is a pointer to the new objecte
+    *this = copy; // we use here assignment operator
 }
 
 Fixed   &Fixed::operator = (const Fixed &source){

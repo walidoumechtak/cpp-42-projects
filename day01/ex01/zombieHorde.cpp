@@ -1,11 +1,11 @@
 #include "Zombie.hpp"
 
-Zombie* Zombie::zombieHorde( int N, std::string name )
+Zombie* zombieHorde(int N, std::string name)
 {
-    zs = new Zombie[N];
+    Zombie *zs = new Zombie[N];
     for (int i = 0; i < N; i++)
     {
-        zs[i] = Zombie(name);
+        zs[i].setName(name);
     }
     return (zs);
 }
