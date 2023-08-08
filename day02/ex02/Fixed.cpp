@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woumecht <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 10:30:00 by woumecht          #+#    #+#             */
+/*   Updated: 2023/08/08 15:54:18 by woumecht         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 #include <cmath>
 
@@ -27,19 +39,15 @@ int Fixed::toInt(void) const
 
 Fixed::Fixed(): fixed_p(0)
 {
-   // std::cout << "Default constructor called" << std::endl;
+    std::cout << "Default constructor called" << std::endl;
 }
 
-// int constructor is called 
-Fixed::Fixed(const int nb){
-    int scaling;
-
-    //std::cout << "Int constructor called" << std::endl;
-    scaling = 1 << frac_b;
-    fixed_p = nb * scaling;
+Fixed::Fixed(const int nb)
+{
+    //std::cout << "Int constructor called" << std::endl
+    fixed_p = nb << frac_b;
 }
 
-// float constructor is called 
 Fixed::Fixed(const float nb_f)
 {
     int scaling;
@@ -51,14 +59,10 @@ Fixed::Fixed(const float nb_f)
 
 Fixed::Fixed(const Fixed &obj)
 {
-   // std::cout << "Copy constructor called" << std::endl;
+    std::cout << "Copy constructor called" << std::endl;
     this->fixed_p = obj.fixed_p;
 }
 
-Fixed::~Fixed()
-{
-   // std::cout << "Destructor called" << std::endl;
-}
 
 Fixed &Fixed::operator=(const Fixed &source)
 {
@@ -69,6 +73,15 @@ Fixed &Fixed::operator=(const Fixed &source)
     }
     return (*this);
 }
+
+Fixed::~Fixed()
+{
+    std::cout << "Destructor called" << std::endl;
+}
+
+// ================== ++++++++++++++  ++++++++++++++++++++++++++ ++++++++++++++ ===================
+// ================== ++++++++++++++  Start operator overlaoding ++++++++++++++ ===================
+// ================== ++++++++++++++  ++++++++++++++++++++++++++ ++++++++++++++ ===================
 
 Fixed Fixed::operator+(const Fixed &obj)
 {
@@ -87,14 +100,14 @@ Fixed Fixed::operator-(const Fixed &obj)
 Fixed Fixed::operator * (const Fixed &obj)
 {
     Fixed new_o;
-    new_o.setRawBits(this->toFloat() * obj.toFloat());
+    new_o.setRawBits((this->fixed_p * obj.fixed_p) / (1 << 8));
     return (new_o);
 }
 
 Fixed Fixed::operator / (const Fixed &obj)
 {
     Fixed new_o;
-    new_o.setRawBits(this->fixed_p >> 8 / obj.fixed_p >> 8);
+    new_o.setRawBits((this->fixed_p / obj.fixed_p) * (1 << 8));
     return (new_o);
 }
 
@@ -158,14 +171,14 @@ Fixed Fixed::operator ++ (int) // obj++  --> post-increment
 {
     Fixed old;
     
-    old = *this;
-    ++fixed_p;
+    old = *this; 
+    (this->fixed_p)++;
     return (old);
 }
 
 Fixed   &Fixed::operator--()
 {
-    this->fixed_p--;
+    (this->fixed_p)--;
     return (*this);
 }
 
@@ -174,7 +187,7 @@ Fixed   Fixed::operator-- (int)
     Fixed old;
 
     old = *this;
-    this->fixed_p--;
+    (this->fixed_p)--;
     return (old);
 }
 
@@ -188,7 +201,15 @@ Fixed   Fixed::operator-- (int)
         return (n2);
 }
 
-const Fixed  &Fixed::min(const Fixed& n1, const Fixed& n2)
+// const Fixed  &Fixed::min(const Fixed& n1, const Fixed& n2)
+// {
+//     if (n1.fixed_p < n2.fixed_p)
+//         return (n1);
+//     else
+//         return (n2);
+// }
+
+Fixed &Fixed::max(Fixed& n1,  Fixed& n2)
 {
     if (n1.fixed_p < n2.fixed_p)
         return (n1);
@@ -196,21 +217,13 @@ const Fixed  &Fixed::min(const Fixed& n1, const Fixed& n2)
         return (n2);
 }
 
-Fixed &Fixed::max(Fixed& n1, Fixed& n2)
-{
-    if (n1.fixed_p < n2.fixed_p)
-        return (n1);
-    else
-        return (n2);
-}
-
-const Fixed &Fixed::max(const Fixed& n1, const Fixed& n2)
-{
-    if (n1.fixed_p > n2.fixed_p)
-        return (n1);
-    else
-        return (n2);
-}
+// const Fixed &Fixed::max(const Fixed& n1, const Fixed& n2)
+// {
+//     if (n1.fixed_p > n2.fixed_p)
+//         return (n1);
+//     else
+//         return (n2);
+// }
 
 // << operator overloading ----------------------------------------------------------
 std::ostream& operator<<(std::ostream & os, const Fixed &obj)

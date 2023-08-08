@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woumecht <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 10:29:46 by woumecht          #+#    #+#             */
+/*   Updated: 2023/08/08 16:26:45 by woumecht         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
-/**
- * main - the start of every program
- * Return: allways 0 (Success)
-*/
 
 int main(void)
 {
@@ -17,13 +25,24 @@ int main(void)
     // std::cout << b << std::endl;
     // std::cout << Fixed::max( a, b ) << std::endl;
 
-
-    // Fixed   c(Fixed(2) + Fixed(2.2f));
-
-    // std::cout << "c --> " << c << std::endl;
-    // return 0;
-
+    // =============================================
+    
     Fixed a(1);
-    a++;
-    std::cout << a << std::endl;
+    Fixed b(1.2f);
+
+    if (a == b)
+        std::cout << "Not equal" << std::endl;
+    if (a > b)
+        std::cout << "a > b" << std::endl;
+    if (a < b)
+        std::cout << "a < b" << std::endl;
+    if (a != b)
+        std::cout << "a != b" << std::endl;
+    if (a >= b)
+        std::cout << "a >= b" << std::endl;
+    if (a <= b)
+        std::cout << "a <= b" << std::endl;
+    
+        
+    return 0;
 }

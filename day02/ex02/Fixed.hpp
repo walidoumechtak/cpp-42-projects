@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woumecht <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 10:29:54 by woumecht          #+#    #+#             */
+/*   Updated: 2023/08/08 15:54:12 by woumecht         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_H
 #define FIXED_H
 
@@ -35,8 +47,8 @@ class Fixed
         Fixed operator ++ (int);
         Fixed &operator -- ();
         Fixed operator -- (int);
-        static const Fixed &min(const Fixed& n1, const Fixed& n2);
-        static const Fixed &max(const Fixed& n1, const Fixed& n2);
+        // static const Fixed &min(const Fixed& n1, const Fixed& n2);
+        // static const Fixed &max(const Fixed& n1, const Fixed& n2);
         static Fixed &min(Fixed& n1, Fixed& n2);
         static Fixed &max(Fixed& n1, Fixed& n2);
 };
