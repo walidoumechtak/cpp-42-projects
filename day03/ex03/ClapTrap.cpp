@@ -2,16 +2,19 @@
 
 ClapTrap::ClapTrap()
 {
-    name = "Boot_clap_name";
+    name = "Boot";
     health = 10;
     e_point = 10;
     a_damage = 0;
     std::cout << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string n) : name(n + "_clap_name")
+ClapTrap::ClapTrap(std::string n) : name(n)
 {
     std::cout << "Constructor called" << std::endl;
+    health = 10;
+    e_point = 10;
+    a_damage = 0;
 }
 
 ClapTrap::~ClapTrap()
@@ -22,10 +25,7 @@ ClapTrap::~ClapTrap()
 ClapTrap::ClapTrap(const ClapTrap& obj)
 {
     std::cout << "Copy constructor called" << std::endl;
-    this->name     = obj.name;
-    this->health   = obj.health;
-    this->e_point  = obj.e_point;
-    this->a_damage = obj.a_damage;
+    *this = obj;
 }
 
 ClapTrap &ClapTrap::operator= (const ClapTrap& obj)
@@ -47,7 +47,7 @@ void ClapTrap::attack(const std::string& target)
 {
     if (health > 0 && e_point > 0)
     {
-        health -= a_damage;
+        e_point--;
         std::cout << "ClapTrap ";
         std::cout << name;
         std::cout << " attakcs ";
@@ -62,6 +62,7 @@ void    ClapTrap::beRepaired(unsigned int amount)
 {
     if (e_point > 0)
     {
+        e_point--;
         health += amount;
         std::cout << "Get " << amount << " back to health" << std::endl;
     }
@@ -69,9 +70,9 @@ void    ClapTrap::beRepaired(unsigned int amount)
 
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-    if (health > 0)
+    if (health > 0 || e_point > 0)
     {
-        std::cout << name << " change take damage with " << amount << std::endl;
-        a_damage = amount;
+        std::cout << name << " take damage with " << amount << std::endl;
+        health -= a_damage;
     }
 }

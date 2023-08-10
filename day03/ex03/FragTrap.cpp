@@ -9,14 +9,17 @@ FragTrap::FragTrap()
     this->a_damage = 30;
 }
 
-FragTrap::FragTrap(std::string nm) : name(nm), health(100), e_point(100), a_damage(30)
+FragTrap::FragTrap(std::string nm) : ClapTrap(nm)
 {
     std::cout << "[FragTrap] constructor called" << std::endl;
+    health = 100;
+    e_point = 100;
+    a_damage = 30;
 }
 
 FragTrap::FragTrap(const FragTrap& obj)
 {
-    this = &obj;
+    *this = obj;
     std::cout << "Copy [FragTrap] constructor called" << std::endl;
 }
 

@@ -2,6 +2,7 @@
 
 int main(void)
 {
-    DiamondTrap d1;
+    DiamondTrap *d1 = new DiamondTrap("walid");
+    d1->whoAmI();
     return (0);
 }

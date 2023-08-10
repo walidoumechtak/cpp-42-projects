@@ -1,8 +1,8 @@
 CPP=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98
-NAME=fragTrap
+NAME=DiamondTrap
 
-SRC=main.cpp ClapTrap.cpp ScavTrap.cpp DiamondTrap.cpp \
+SRC=main.cpp ClapTrap.cpp ScavTrap.cpp DiamondTrap.cpp FragTrap.cpp\
 
 OBJ= $(SRC:.cpp=.o)
 
