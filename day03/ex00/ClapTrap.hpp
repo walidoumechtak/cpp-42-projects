@@ -13,7 +13,7 @@ class ClapTrap
         int a_damage;
     public:
         ClapTrap();
-        ClapTrap(std::string n, int h, int e_p, int a_d);
+        ClapTrap(std::string n);
         ClapTrap(const ClapTrap& obj);
         ~ClapTrap();
         ClapTrap &operator= (const ClapTrap& obj);

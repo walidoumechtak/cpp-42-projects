@@ -7,7 +7,7 @@ int main(void)
     frag.attack("My enemy");
     frag.attack("My enemy");
     frag.beRepaired(50);
-    frag.takeDamage(46);
+    frag.takeDamage(200);
     frag.attack("My enemy");
     frag.highFivesGuys();
 

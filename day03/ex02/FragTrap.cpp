@@ -9,7 +9,7 @@ FragTrap::FragTrap()
     this->a_damage = 30;
 }
 
-FragTrap::FragTrap(std::string nm) : name(nm)
+FragTrap::FragTrap(std::string nm) : ClapTrap(nm)
 {
     this->health = 100;
     this->e_point = 100;
@@ -19,7 +19,7 @@ FragTrap::FragTrap(std::string nm) : name(nm)
 
 FragTrap::FragTrap(const FragTrap& obj)
 {
-    this = &obj;
+    *this = obj;
     std::cout << "Copy [FragTrap] constructor called" << std::endl;
 }
 
@@ -30,6 +30,7 @@ FragTrap::~FragTrap()
 
 FragTrap &FragTrap::operator= (const FragTrap& obj)
 {
+    std::cout << "[FragTrap] copy assignemet operator called" << std::endl;
     if (this != &obj)
     {
         ClapTrap::operator=(obj);

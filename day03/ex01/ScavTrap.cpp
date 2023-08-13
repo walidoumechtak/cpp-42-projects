@@ -9,6 +9,9 @@ ScavTrap::ScavTrap()
 }
 
 ScavTrap::ScavTrap(std::string n) : ClapTrap(n){
+    this->health = 100;
+    this->e_point = 50;
+    this->a_damage = 20;
     std::cout << "[ScavTrap] constructor called" << std::endl;
 }
 
@@ -34,10 +37,10 @@ ScavTrap &ScavTrap::operator= (const ScavTrap& obj)
 
 void ScavTrap::attack(const std::string& target)
 {
-    std::cout << "ScavTrap attack " << target << std::endl;
+    std::cout << "[ScavTrap] " << name << " attack " << target << std::endl;
 }
 
 void ScavTrap::guardGate()
 {
-    std::cout << " ScavTrap is now in Gate keeper mode" << std::endl;
+    std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
 }

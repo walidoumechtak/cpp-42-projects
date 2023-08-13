@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woumecht <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 10:29:16 by woumecht          #+#    #+#             */
+/*   Updated: 2023/08/08 10:50:00 by woumecht         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 #include <cmath>
 #include <stdio.h>
@@ -65,7 +77,7 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-    return ((fixed_p / 256));  // fixed_p >> getRawBits(); == 8
+    return (fixed_p / 256);  // fixed_p >> getRawBits(); == 8
 }
 
 // << operator overloading ----------------------------------------------------------

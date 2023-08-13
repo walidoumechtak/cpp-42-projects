@@ -3,11 +3,11 @@
 
 int main(void)
 {
-    ClapTrap c1;
-    ScavTrap s1("the Scav", 100, 50, 20);
+    ScavTrap s1("SCAV");
 
-    c1.attack("monster");
     s1.attack("walid");
+    s1.beRepaired(4);
+    s1.takeDamage(2);
     s1.guardGate();
     return (0);
 }
