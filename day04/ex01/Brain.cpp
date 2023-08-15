@@ -33,6 +33,11 @@ Brain::~Brain()
 
 // ===============  Getter and Setter
 
+std::string *Brain::getBrain()
+{
+    return (ideas);
+}
+
 void    Brain::setBrain(std::string str, int lim)
 {
     for (int i = 0; i < lim; i ++)
