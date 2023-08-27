@@ -1,8 +1,8 @@
-CXX=clang++
+CXX=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98 -fsanitize=address
 NAME=brain
 
-SRC=main.cpp AbstractAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp\
+SRC=main.cpp AbstractAnimal.cpp Dog.cpp Cat.cpp Brain.cpp\
 
 OBJ= $(SRC:.cpp=.o)
 

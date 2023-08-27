@@ -7,7 +7,7 @@ Dog::Dog()
     d_brain = new Brain();
 }
 
-Dog::Dog(const Dog& source)
+Dog::Dog(const Dog& source) : Animal()
 {
     std::cout << "[Dog] Copy Constructor" << std::endl;
     *this = source;
@@ -34,7 +34,7 @@ Dog::~Dog()
 
 void    Dog::makeSound() const
 {
-    std::cout << "Dog sound ............." << std::endl;
+    std::cout << "Dog sound ..... " << std::endl;
 }
 
 std::string Dog::getType() const

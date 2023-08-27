@@ -3,18 +3,19 @@
 Brain::Brain()
 {
     for (int    i = 0; i < 100; i ++)
-        ideas[i] = "Void";
+        ideas[i] = "...Void...";
     std::cout << "[Brain] default Constructor" << std::endl;
 }
 
 Brain::Brain(const Brain& source)
 {
-    *this = source;
     std::cout << "[Brain] Copy Constructor" << std::endl;
+    *this = source;
 }
 
 Brain &Brain::operator= (const Brain& source)
 {
+    std::cout << "[Brain] Copy constructor called" << std::endl;
     if (this != &source)
     {
         for (int    i = 0; i < 100; i ++)

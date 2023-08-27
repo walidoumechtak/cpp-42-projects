@@ -8,18 +8,18 @@ Animal::Animal()
 
 Animal::Animal(std::string ty) : type(ty)
 {
-    std:: cout << "[Animal] Constructor" << std::endl;    
+    std:: cout << "[Animal] Constructor" << std::endl;
 }
 
 Animal::Animal(const Animal& obj)
 {
+    std:: cout << "[Animal] Copy constructor" << std::endl;    
     *this = obj;
-    std:: cout << "[Animal] Destructor" << std::endl;    
-
 }
 
 Animal &Animal::operator= (const Animal& obj)
 {
+    std::cout << "[Animal] copy assignment operator called" << std::endl;
     if (this != &obj)
     {
         this->type = obj.type;

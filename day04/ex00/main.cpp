@@ -11,9 +11,8 @@ void    subject_test()
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
     i->makeSound(); //will output the cat sound!
-    j->makeSound();
-    meta->makeSound();
-
+    j->makeSound(); //will output the dog sound!
+    meta->makeSound();// The animal sound.
 }
 
 void    wrongTest()
@@ -23,7 +22,7 @@ void    wrongTest()
     std::cout << "type " << w_cat->getType() << std::endl;
     animal->makeSound();
     std::cout << "|---------------------|" << std::endl;
-    w_cat->makeSound();
+    w_cat->makeSound(); // this should display the cat sound but not .......!
 }
 
 int main(void)

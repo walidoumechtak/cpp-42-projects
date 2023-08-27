@@ -7,7 +7,7 @@ Cat::Cat()
     c_brain = new Brain();
 }
 
-Cat::Cat(const Cat& source)
+Cat::Cat(const Cat& source) : AbstractAnimal()
 {
     std::cout << "[Cat] Copy Constructor" << std::endl;
     *this = source;

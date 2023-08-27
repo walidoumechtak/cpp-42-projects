@@ -7,7 +7,7 @@ Cat::Cat()
     c_brain = new Brain();
 }
 
-Cat::Cat(const Cat& source)
+Cat::Cat(const Cat& source) : Animal()
 {
     std::cout << "[Cat] Copy Constructor" << std::endl;
     *this = source;
@@ -15,6 +15,7 @@ Cat::Cat(const Cat& source)
 
 Cat &Cat::operator= (const Cat& source)
 {
+    std::cout << "[Cat] Copy construcotr" << std::endl;
     if (this != &source)
     {
         this->type = source.type;
@@ -34,7 +35,7 @@ Cat::~Cat()
 
 void    Cat::makeSound() const
 {
-    std::cout << "Cat sound ............." << std::endl;
+    std::cout << "Cat sound ..... " << std::endl;
 }
 
 std::string Cat::getType() const

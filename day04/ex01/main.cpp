@@ -1,6 +1,5 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongCat.hpp"
 
 
 void    subTest()
@@ -23,7 +22,6 @@ void    Half_dog_Half_cat()
         else
             arr[i] = new Cat();
     }
-
     for (int    j = 0; j < size; j ++)
         delete arr[j];
 }
@@ -34,25 +32,24 @@ void    DeepCopy()
         Cat c1;
         Cat c2(c1);
 
-        Brain *ptr_cat = c1.getBrain();
-        std::cout << "ptr is : " << ptr_cat << std::endl;
+        std::cout << "ptr is : " << c1.getBrain() << std::endl;
         std::cout << "The addr is: " << c2.getBrain() << std::endl;
     }
-    std::cout << " ===============================================" << std::endl;
+    std::cout << " -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << std::endl;
+    std::cout << " -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << std::endl;
 
         Dog d1;
-        Dog d2(d1);
+        Dog d2 = d1;
 
-        Brain *ptr_dog = d1.getBrain();
-        std::cout << "ptr is : " << ptr_dog << std::endl;
+        std::cout << "ptr is : " << d1.getBrain() << std::endl;
         std::cout << "the addr is : " << d2.getBrain() << std::endl;
 }
 
 int main(void)
 {
-    subTest();
+    // subTest();
     // Half_dog_Half_cat();
-    // DeepCopy();
+    DeepCopy();
 
     // system("leaks brain");
     return (0);

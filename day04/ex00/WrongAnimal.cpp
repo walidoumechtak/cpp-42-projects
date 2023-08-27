@@ -14,8 +14,7 @@ WrongAnimal::WrongAnimal(std::string ty) : type(ty)
 WrongAnimal::WrongAnimal(const WrongAnimal& obj)
 {
     *this = obj;
-    std:: cout << "[WrongAnimal] Destructor" << std::endl;    
-
+    std:: cout << "[WrongAnimal] Destructor" << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator= (const WrongAnimal& obj)

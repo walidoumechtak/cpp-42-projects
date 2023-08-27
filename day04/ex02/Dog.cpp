@@ -7,7 +7,7 @@ Dog::Dog()
     d_brain = new Brain();
 }
 
-Dog::Dog(const Dog& source)
+Dog::Dog(const Dog& source) : AbstractAnimal()
 {
     std::cout << "[Dog] Copy Constructor" << std::endl;
     *this = source;

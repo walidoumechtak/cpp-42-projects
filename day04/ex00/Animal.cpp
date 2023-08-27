@@ -14,12 +14,12 @@ Animal::Animal(std::string ty) : type(ty)
 Animal::Animal(const Animal& obj)
 {
     *this = obj;
-    std:: cout << "[Animal] Destructor" << std::endl;    
-
+    std:: cout << "[Animal] Copy Constructor" << std::endl;
 }
 
 Animal &Animal::operator= (const Animal& obj)
 {
+    std::cout << "[Animal] copy assignement operator" << std::endl;
     if (this != &obj)
     {
         this->type = obj.type;
@@ -31,8 +31,6 @@ Animal::~Animal()
 {
     std:: cout << "[Animal] Destructor" << std::endl;    
 }
-
-
 
 // ===========================================================
 

@@ -6,7 +6,6 @@
 
 class Animal
 {
-
     protected:
         std::string type;
     public:
@@ -18,6 +17,5 @@ class Animal
         virtual void    makeSound() const;
         ~Animal();
 };
-
 
 #endif
