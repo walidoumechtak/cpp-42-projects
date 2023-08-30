@@ -49,9 +49,9 @@ void    DeepCopy()
 
 int main(void)
 {
-    subTest();
+    // subTest();
     // Half_dog_Half_cat();
-    // DeepCopy();
+    DeepCopy();
 
     // system("leaks brain");
     return (0);

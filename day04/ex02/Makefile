@@ -1,6 +1,6 @@
 CXX=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98 -fsanitize=address
-NAME=brain
+NAME=Abstract
 
 SRC=main.cpp AbstractAnimal.cpp Dog.cpp Cat.cpp Brain.cpp\
 

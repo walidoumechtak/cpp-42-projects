@@ -8,8 +8,8 @@ Dog::Dog()
 
 Dog::Dog(const Dog& source) : Animal()
 {
-    *this = source;
     std::cout << "[Dog] Copy Constructor" << std::endl;
+    *this = source;
 }
 
 Dog &Dog::operator= (const Dog& source)

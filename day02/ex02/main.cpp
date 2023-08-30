@@ -6,7 +6,7 @@
 /*   By: woumecht <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:29:46 by woumecht          #+#    #+#             */
-/*   Updated: 2023/08/08 16:30:53 by woumecht         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:33:51 by woumecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(void)
 
     // ====================== My Test
     
-        Fixed a(1);
+     /*   Fixed a(1);
         Fixed b(1.2f);
 
         if (a == b)
@@ -44,6 +44,11 @@ int main(void)
             std::cout << "a >= b" << std::endl;
         if (a <= b)
             std::cout << "a <= b" << std::endl;
-            
-    return 0;
+       */
+
+	// Fixed a;
+    Fixed temp = Fixed(1.222f) * Fixed(3);
+    Fixed b(temp);
+	// a.min(15, 8);
+	return 0;
 }

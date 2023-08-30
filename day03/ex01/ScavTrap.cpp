@@ -2,10 +2,10 @@
 
 ScavTrap::ScavTrap()
 {
-    std::cout << "default [ScavTrap] constructor called" << std::endl;
     this->health = 100;
     this->e_point = 50;
     this->a_damage = 20;
+    std::cout << "default [ScavTrap] constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string n) : ClapTrap(n){
@@ -30,14 +30,18 @@ ScavTrap &ScavTrap::operator= (const ScavTrap& obj)
     std::cout << "Copy [ScavTrap] assignment operator called" << std::endl;
     if (this != &obj)
     {
-        ClapTrap::operator=(obj);
+        this->name = obj.name;
+        this->a_damage = obj.a_damage;
+        this->e_point = obj.e_point;
+        this->health = health;
     }
     return (*this);
 }
 
 void ScavTrap::attack(const std::string& target)
 {
-    std::cout << "[ScavTrap] " << name << " attack " << target << std::endl;
+    if (health > 0 && e_point > 0)
+        std::cout << "[ScavTrap] " << name << " attack " << target << std::endl;
 }
 
 void ScavTrap::guardGate()

@@ -15,12 +15,16 @@ Cat::Cat(const Cat& source) : Animal()
 
 Cat &Cat::operator= (const Cat& source)
 {
-    std::cout << "[Cat] Copy construcotr" << std::endl;
+    std::cout << "[Cat] Copy assignement" << std::endl;
     if (this != &source)
     {
         this->type = source.type;
-        // this->c_brain = source.c_brain; // this line is a shallow copy
+        // this->c_brain = source.c_brain; //this line is a shallow copy
         this->c_brain = new Brain();       // this line in a deep copy
+        std::string *in = source.c_brain->getIdeas();
+        std::string *out = this->c_brain->getIdeas();
+        for (int i = 0; i < 100; i++)
+            out[i] = in[i];
     }
     return (*this);
 }

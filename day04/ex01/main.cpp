@@ -45,11 +45,28 @@ void    DeepCopy()
         std::cout << "the addr is : " << d2.getBrain() << std::endl;
 }
 
+void    additional_tests()
+{
+    Cat *cat_ptr = new Cat();
+    Brain *brain_ptr = cat_ptr->getBrain();
+    brain_ptr->setIdeas("let me thinking for that !!", 98);
+    //*******************************
+    Cat copy_cat(*cat_ptr);
+    Brain *copy_cat_brain = copy_cat.getBrain();
+    std::string *my_ideas = copy_cat_brain->getIdeas();
+    for (int i = 0; i < 100; i++)
+    {
+        std::cout << my_ideas[i] << std::endl;
+    }
+    delete cat_ptr;
+}
+
 int main(void)
 {
-    // subTest();
+    subTest();
     // Half_dog_Half_cat();
-    DeepCopy();
+    // DeepCopy();
+    // additional_tests();
 
     // system("leaks brain");
     return (0);

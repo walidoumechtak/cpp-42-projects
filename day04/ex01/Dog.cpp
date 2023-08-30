@@ -20,6 +20,10 @@ Dog &Dog::operator= (const Dog& source)
     {
         this->type = source.type;
         this->d_brain = new Brain();
+        std::string *in = source.d_brain->getIdeas();
+        std::string *out = this->d_brain->getIdeas();
+        for (int i = 0; i < 100; i++)
+            out[i] = in[i];
     }
     return (*this);
 }

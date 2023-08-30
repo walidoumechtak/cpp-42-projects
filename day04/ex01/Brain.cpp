@@ -15,7 +15,7 @@ Brain::Brain(const Brain& source)
 
 Brain &Brain::operator= (const Brain& source)
 {
-    std::cout << "[Brain] Copy constructor called" << std::endl;
+    std::cout << "[Brain] Copy assignement called" << std::endl;
     if (this != &source)
     {
         for (int    i = 0; i < 100; i ++)
@@ -34,13 +34,14 @@ Brain::~Brain()
 
 // ===============  Getter and Setter
 
-std::string *Brain::getBrain()
+std::string *Brain::getIdeas()
 {
     return (ideas);
 }
 
-void    Brain::setBrain(std::string str, int lim)
+void    Brain::setIdeas(std::string str, int lim)
 {
+    std::cout << "Set ideas called" << std::endl;
     for (int i = 0; i < lim; i ++)
         ideas[i] = str;
 }

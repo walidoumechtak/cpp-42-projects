@@ -95,6 +95,6 @@ void test1()
 int main()
 {
     // basic_test();
-    // sub_test();
-    test1();
+    sub_test();
+    // test1();
 }

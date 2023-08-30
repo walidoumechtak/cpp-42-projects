@@ -20,6 +20,9 @@ Character::Character(std::string in_name) : name(in_name), temp(NULL), cpt(0)
 Character::Character(const Character& source)
 {
     std::cout << "[Character] copy construcotr called" << std::endl;
+    this->temp = NULL;
+    for (int i = 0; i < 4; i++)
+        this->arr[i] = NULL;
     *this = source;
 }
 
@@ -30,6 +33,8 @@ Character &Character::operator= (const Character& source)
     {
         this->cpt = source.cpt;
         this->name = source.name;
+        if (this->temp)
+            delete this->temp;
         //***********************
         if (source.temp && source.temp->getType() == "ice")
             this->temp = new Ice();
@@ -39,6 +44,8 @@ Character &Character::operator= (const Character& source)
             this->temp = NULL;
         for (int i = 0; i < 4; i++)
         {
+            if (this->arr[i])
+                delete this->arr[i];
             if (source.arr[i] && source.arr[i]->getType() == "ice")
                 this->arr[i] = new Ice();
             else if (source.arr[i] && source.arr[i]->getType() == "cure")

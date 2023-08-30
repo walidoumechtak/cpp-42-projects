@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap()
 {
-    name = "Boot";
+    name = "BOOT";
     health = 10;
     e_point = 10;
     a_damage = 0;
@@ -60,7 +60,7 @@ void ClapTrap::attack(const std::string& target)
 
 void    ClapTrap::beRepaired(unsigned int amount)
 {
-    if (e_point > 0)
+    if (e_point > 0 && health > 0)
     {
         e_point--;
         health += amount;
@@ -72,7 +72,7 @@ void    ClapTrap::takeDamage(unsigned int amount)
 {
     if (health > 0 || e_point > 0)
     {
+        health -= amount;
         std::cout << name << " take damage with " << amount << std::endl;
-        health -= a_damage;
     }
 }

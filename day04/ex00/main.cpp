@@ -13,6 +13,9 @@ void    subject_test()
     i->makeSound(); //will output the cat sound!
     j->makeSound(); //will output the dog sound!
     meta->makeSound();// The animal sound.
+    delete meta;
+    delete j;
+    delete i;
 }
 
 void    wrongTest()
@@ -23,11 +26,13 @@ void    wrongTest()
     animal->makeSound();
     std::cout << "|---------------------|" << std::endl;
     w_cat->makeSound(); // this should display the cat sound but not .......!
+    delete animal;
+    delete w_cat;
 }
 
 int main(void)
 {
-    // subject_test();
-    wrongTest();
+    subject_test();
+    // wrongTest();
     return (0);
 }

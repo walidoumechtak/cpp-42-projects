@@ -17,9 +17,8 @@ FragTrap::FragTrap(std::string nm) : ClapTrap(nm)
     std::cout << "[FragTrap] constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& obj)
+FragTrap::FragTrap(const FragTrap& obj) : ClapTrap(obj)
 {
-    *this = obj;
     std::cout << "Copy [FragTrap] constructor called" << std::endl;
 }
 
@@ -40,5 +39,6 @@ FragTrap &FragTrap::operator= (const FragTrap& obj)
 
 void    FragTrap::highFivesGuys(void)
 {
-    std::cout << "lets give a height five   \\o/" << std::endl;
+    if (health > 0 && e_point > 0)
+        std::cout << "lets give a height five   \\o/" << std::endl;
 }

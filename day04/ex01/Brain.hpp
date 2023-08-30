@@ -12,8 +12,8 @@ public:
     Brain();
     Brain(const Brain& source);
     Brain &operator= (const Brain& source);
-    void    setBrain(std::string str, int lim);
-    std::string *getBrain();
+    void    setIdeas(std::string str, int lim);
+    std::string *getIdeas();
     ~Brain();
 };
 

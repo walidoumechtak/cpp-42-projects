@@ -13,8 +13,8 @@ Animal::Animal(std::string ty) : type(ty)
 
 Animal::Animal(const Animal& obj)
 {
-    *this = obj;
     std:: cout << "[Animal] Copy Constructor" << std::endl;
+    *this = obj;
 }
 
 Animal &Animal::operator= (const Animal& obj)
