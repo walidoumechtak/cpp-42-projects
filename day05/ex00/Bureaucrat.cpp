@@ -60,14 +60,10 @@ void    Bureaucrat::decGrade()
 
 std::ostream &operator<< (std::ostream& os, const Bureaucrat& obj)
 {
-    int number = obj.getGrade();
     std::stringstream ss;
-    ss << number;
-    std::string grad = ss.str();
 
-    std::string output;
-    output = obj.getName() + " >, bureaucrat grade " + grad;
-    os << output;
+    ss << obj.getGrade();
+    os << obj.getName() + ", bureaucrat grade " + ss.str();
     return (os);
 }
 
