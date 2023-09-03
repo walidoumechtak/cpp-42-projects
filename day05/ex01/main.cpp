@@ -8,10 +8,10 @@ int main(void)
         Bureaucrat b1("walid", 5);
         Form f1("Certificat", 10, 55);
         std::cout << f1 << std::endl;
-        b1.signForm();
+        b1.signForm(f1);
         f1.beSigned(b1);
         std::cout << f1 << std::endl;
-        b1.signForm();
+        b1.signForm(f1);
     }
     catch(const std::exception& e)
     {

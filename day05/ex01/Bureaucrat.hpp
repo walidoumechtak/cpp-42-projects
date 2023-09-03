@@ -52,7 +52,7 @@ class Bureaucrat : public Form
         std::string getName() const;
         void    incGrade();
         void    decGrade();
-        void    signForm();
+        void    signForm(const Form& source);
 
        
 

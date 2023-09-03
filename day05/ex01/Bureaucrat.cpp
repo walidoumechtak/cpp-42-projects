@@ -113,12 +113,11 @@ const char* Bureaucrat::GradeOutOfRange::what() const throw()
 }
 
 
-void Bureaucrat::signForm()
+void Bureaucrat::signForm(const Form& source)
 {
-    int is_signed = getIsSigned();
-    std::cout << "ST: " << is_signed << std::endl;
+    bool is_signed = source.getIsSigned();
     if (is_signed == true)
-        std::cout << this->name << " signed " << getFormName() << std::endl;
+        std::cout << this->name << " signed " << source.getFormName() << std::endl;
     else
-        std::cout << this->name << " couldn't sign " << getFormName() << " because ...., i think i forget" << std::endl;
+        std::cout << this->name << " couldn't sign " << source.getFormName() << " because ...., i think i forget" << std::endl;
 }

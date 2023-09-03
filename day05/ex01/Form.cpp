@@ -65,7 +65,6 @@ void Form::beSigned(const Bureaucrat &source)
     int gr = source.getGrade();
     if (gr <= grad_to_sign)
     {
-        std::cout << "entred" << std::endl;
         this->is_signed = true;
     }
     else
