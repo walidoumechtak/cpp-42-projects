@@ -1,11 +1,10 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
+#include "Form.hpp"
 #include <string>
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
-
 
 class Bureaucrat : public Form
 {

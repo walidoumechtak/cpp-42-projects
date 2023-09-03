@@ -1,4 +1,6 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
+
 
 Form::Form() : form_name("BOOT"), is_signed(false), grad_to_sign(5), grad_to_exec(10)
 {
@@ -62,7 +64,10 @@ void Form::beSigned(const Bureaucrat &source)
 {
     int gr = source.getGrade();
     if (gr <= grad_to_sign)
+    {
+        std::cout << "entred" << std::endl;
         this->is_signed = true;
+    }
     else
         throw Form::GradeTooLowException();
 }
@@ -75,7 +80,7 @@ std::ostream &operator<<(std::ostream &os, const Form &obj)
         is_sign = "signed";
     else
         is_sign = "not signed";
-    os << "The form: " << obj.getFormName() << " has " << obj.getGradToSign() << ", " << obj.getGradToExec() << " and the state is: " << is_sign;
+    os << "The form: " << obj.getFormName() << " has grade to sign: " << obj.getGradToSign() << ", and grade to exec: " << obj.getGradToExec() << " and the state is: " << is_sign;
     return (os);
 }
 

@@ -116,8 +116,9 @@ const char* Bureaucrat::GradeOutOfRange::what() const throw()
 void Bureaucrat::signForm()
 {
     int is_signed = getIsSigned();
+    std::cout << "ST: " << is_signed << std::endl;
     if (is_signed == true)
         std::cout << this->name << " signed " << getFormName() << std::endl;
     else
-        std::cout << this->name << " couldn't sign " << getFormName() << " because need to improve his grad" << std::endl;
+        std::cout << this->name << " couldn't sign " << getFormName() << " because ...., i think i forget" << std::endl;
 }
