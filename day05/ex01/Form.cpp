@@ -8,18 +8,19 @@ Form::Form(const std::string in_name, const int in_grad_sign, const int in_grad_
     : form_name(in_name), is_signed(false), grad_to_sign(in_grad_sign), grad_to_exec(in_grad_exec)
 {
     if (grad_to_exec < 1)
-        throw Form::GradeTooHighException;
+        throw Form::GradeTooHighException();
     else if (grad_to_exec > 150)
-        throw Form::GradeTooLowException;
+        throw Form::GradeTooLowException();
     else if (grad_to_sign < 1)
-        throw Form::GradeTooHighException;
+        throw Form::GradeTooHighException();
     else if (grad_to_sign > 150)
-        throw Form::GradeTooLowException;
+        throw Form::GradeTooLowException();
 }
 
-Form::Form(const From &source)
+Form::Form(const Form &source) 
+    : grad_to_sign(source.grad_to_sign), grad_to_exec(source.grad_to_exec)
 {
-    *this = source
+    *this = source;
 }
 
 Form &Form::operator= (const Form& source)
@@ -37,33 +38,44 @@ Form::~Form()
 
 /* ---------- End canonical form ---------- */
 
-const std::string Form::getName() const
+const std::string Form::getFormName() const
 {
     return (this->form_name);
 }
 
-bool    Form::is_signed() const
+bool Form::getIsSigned() const
 {
-    return (this->is_signed);
+    return is_signed;
 }
 
-const int   Form::grad_to_exec() const
+int Form::getGradToSign() const
+{
+    return grad_to_sign;
+}
+
+int   Form::getGradToExec() const
 {
     return (this->grad_to_exec);
 }
 
-const int   Form::grad_to_sign() const
+void Form::beSigned(const Bureaucrat &source)
 {
-    return (this->grad_to_sign);
+    int gr = source.getGrade();
+    if (gr <= grad_to_sign)
+        this->is_signed = true;
+    else
+        throw Form::GradeTooLowException();
 }
 
 std::ostream &operator<<(std::ostream &os, const Form &obj)
 {
-    std::stringstream ss;
-    std::string result;
+    std::string is_sign;
 
-    ss << obj.getGrade();
-    os << obj.getName() + ", bureaucrat grade " + ss.str();
+    if (obj.getIsSigned() == true) 
+        is_sign = "signed";
+    else
+        is_sign = "not signed";
+    os << "The form: " << obj.getFormName() << " has " << obj.getGradToSign() << ", " << obj.getGradToExec() << " and the state is: " << is_sign;
     return (os);
 }
 

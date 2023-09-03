@@ -19,7 +19,7 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& source)
+Bureaucrat::Bureaucrat(const Bureaucrat& source) : Form()
 {
     *this = source;
 }
@@ -60,10 +60,7 @@ void    Bureaucrat::decGrade()
 
 std::ostream &operator<< (std::ostream& os, const Bureaucrat& obj)
 {
-    std::stringstream ss;
-
-    ss << obj.getGrade();
-    os << obj.getName() + ", bureaucrat grade " + ss.str();
+    os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
     return (os);
 }
 
@@ -113,4 +110,14 @@ Bureaucrat::GradeOutOfRange::~GradeOutOfRange() throw()
 const char* Bureaucrat::GradeOutOfRange::what() const throw()
 {
     return (msg.c_str());
+}
+
+
+void Bureaucrat::signForm()
+{
+    int is_signed = getIsSigned();
+    if (is_signed == true)
+        std::cout << this->name << " signed " << getFormName() << std::endl;
+    else
+        std::cout << this->name << " couldn't sign " << getFormName() << " because need to improve his grad" << std::endl;
 }

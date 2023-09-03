@@ -1,56 +1,37 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
+
     try
     {
         Bureaucrat b1("walid", 5);
-        std::cout << b1 << std::endl;
-        b1.incGrade();
-        b1.incGrade();
-        std:: cout << b1 << std::endl;
-        b1.decGrade();
-        std:: cout << b1 << std::endl;
+        b1.signForm();
+        b1.beSigned();
+        b1.signForm();
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
-    }
-
-    std:: cout << "__________________________" << std::endl << std::endl;
-
-    try
-    {
-        Bureaucrat b2("Low", 200);
-        std::cout << b2 << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() <<  std::endl;
     }
     
     std:: cout << "__________________________" << std::endl << std::endl;
-
-    try
+    
+    tyr
     {
-        Bureaucrat b3("Height", 0);
-        std::cout << b3 << std::endl;
+        Bureaucrat b2("med", 10);
+        Form f1("Off Form", 0, 100);
+        f1.beSigned(b2);
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
     }
+    
+    // std:: cout << "__________________________" << std::endl << std::endl;
 
-    std:: cout << "__________________________" << std::endl << std::endl;
-    try
-    {
-        Bureaucrat b4("OutRange", 2);
-        b4.incGrade();
-        b4.incGrade();
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+
+    // std:: cout << "__________________________" << std::endl << std::endl;
     
 }
