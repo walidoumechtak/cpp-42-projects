@@ -38,7 +38,7 @@ class Form
         bool    getIsSigned() const;
         int   getGradToSign() const;
         int   getGradToExec() const;
-        virtual void    beSigned(const Bureaucrat& source) = 0;
+        virtual void    beSigned(const Bureaucrat& source);
         virtual void    execute(Bureaucrat const & executor) const = 0;
 };
 
