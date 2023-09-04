@@ -1,7 +1,7 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <string>
 #include <iostream>
 #include <exception>
@@ -52,7 +52,7 @@ class Bureaucrat
         std::string getName() const;
         void    incGrade();
         void    decGrade();
-        void    signForm(const Form& source);
+        void    signForm(const AForm& source);
 
        
 

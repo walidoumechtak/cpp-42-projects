@@ -113,7 +113,7 @@ const char* Bureaucrat::GradeOutOfRange::what() const throw()
 }
 
 
-void Bureaucrat::signForm(const Form& source)
+void Bureaucrat::signForm(const AForm& source)
 {
     bool is_signed = source.getIsSigned();
     if (is_signed == true)

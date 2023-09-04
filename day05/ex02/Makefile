@@ -2,7 +2,7 @@ CXX=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98 -fsanitize=address
 NAME=ex01
 
-SRC= AForm.cpp Bureaucrat.cpp main.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp\
+SRC= AForm.cpp Bureaucrat.cpp  ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp main.cpp\
 
 OBJ= $(SRC:.cpp=.o)
 
