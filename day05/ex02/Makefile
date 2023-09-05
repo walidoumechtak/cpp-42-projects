@@ -1,6 +1,6 @@
 CXX=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98 -fsanitize=address
-NAME=ex01
+NAME=ex02
 
 SRC= AForm.cpp Bureaucrat.cpp  ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp main.cpp\
 
