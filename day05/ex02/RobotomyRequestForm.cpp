@@ -37,11 +37,10 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
     int grad = executor.getGrade();
     if (grad < getGradToExec() && getIsSigned() == true)
     {
-        // Seed the random number generator with the current time
+        // put the random number generator with the current time using time() function
         std::srand(std::time(0));
-        // Generate and print a random number between 1 and 10
+        // Generate a random number between 1 and 100
         int randomNumber = (std::rand() % 100) + 1;
-        std::cout << randomNumber << std::endl;
         if (randomNumber >= 50)
             std::cout << target << " has been robotomized successfully 50% of the tim" << std::endl;
         else

@@ -92,10 +92,10 @@ std::ostream &operator<<(std::ostream &os, const AForm &obj)
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-    return ("You pass the High grade");
+    return ("Hiegh grade value");
 }
 
 const char* AForm::GradeTooLowException::what() const throw()
 {
-    return ("You pass the Low grade");
+    return ("Low grade value");
 }

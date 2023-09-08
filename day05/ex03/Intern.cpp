@@ -25,19 +25,26 @@ Intern::~Intern()
 
 AForm* Intern::makeForm(std::string f_name, std::string f_target)
 {
-    AForm *newAForm;
     char c = std::toupper(f_name[0]);
     char arr[3] = {'S', 'R', 'P'};
-
+    AForm *ptr_arr[3] = {new ShrubberyCreationForm(f_target), new RobotomyRequestForm(f_target), new PresidentialPardonForm(f_target)};
+    AForm *ret;
     for (int i = 0; i < 3; i++)
     {
         if (arr[i] == c)
-        {    
-            std::cout << "Found it" << std::endl;
-            newAForm = new ShrubberyCreationForm(f_target);
-            return (newAForm);
+        {
+            ret = ptr_arr[i];
+            for (int l = 0;  l < 3; l++)
+            {
+                if (i != l)
+                    delete ptr_arr[l];
+            }
+            std::cout << "Intern creates " << f_name << std::endl;
+            return (ret);
         }
     }
+    for (int l = 0;  l < 3; l++)
+        delete ptr_arr[l];
     std::cout << "The Form not found" << std::endl;
     return (NULL);
 }

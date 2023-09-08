@@ -8,9 +8,9 @@ Bureaucrat::Bureaucrat() : name("BOOT"), grade(1)
 Bureaucrat::Bureaucrat(const std::string in_name, int in_grade) : name(in_name)
 {
     if (in_grade < 1)
-        throw Bureaucrat::GradeTooHighException("You pass the Hiegh grad");
+        throw Bureaucrat::GradeTooHighException("Hiegh grade value");
     else if (in_grade > 150)
-        throw Bureaucrat::GradeTooLowException("You pass the Low grad");
+        throw Bureaucrat::GradeTooLowException("Low grade value");
     this->grade = in_grade;
 }
 
@@ -60,10 +60,7 @@ void    Bureaucrat::decGrade()
 
 std::ostream &operator<< (std::ostream& os, const Bureaucrat& obj)
 {
-    std::stringstream ss;
-
-    ss << obj.getGrade();
-    os << obj.getName() + ", bureaucrat grade " + ss.str();
+    os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
     return (os);
 }
 
@@ -114,3 +111,5 @@ const char* Bureaucrat::GradeOutOfRange::what() const throw()
 {
     return (msg.c_str());
 }
+
+

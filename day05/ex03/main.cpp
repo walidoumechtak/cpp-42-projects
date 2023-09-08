@@ -51,14 +51,24 @@ void    prev_test()
 
 int main(void)
 {
+
     AForm* rrf;
     Intern myIntern;
 
     rrf = myIntern.makeForm("robotmy request", "walid");
-
-    Bureaucrat b1("amnine", 5);
-
-    rrf->beSigned(b1);
-    b1.executeForm(*rrf);
-    delete rrf;
+    if (!rrf)
+        return (1);
+    try
+    {
+        Bureaucrat b1("amnine", 7);
+        rrf->beSigned(b1);
+        b1.executeForm(*rrf);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    delete rrf;  
+    
+   
 }

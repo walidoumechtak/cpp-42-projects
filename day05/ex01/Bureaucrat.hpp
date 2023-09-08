@@ -6,7 +6,7 @@
 #include <iostream>
 #include <exception>
 
-class Bureaucrat : public Form
+class Bureaucrat
 {
     public:
         class GradeTooHighException : public std::exception

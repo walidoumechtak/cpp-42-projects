@@ -20,7 +20,7 @@ Form::Form(const std::string in_name, const int in_grad_sign, const int in_grad_
 }
 
 Form::Form(const Form &source) 
-    : grad_to_sign(source.grad_to_sign), grad_to_exec(source.grad_to_exec)
+    : form_name(source.form_name) ,grad_to_sign(source.grad_to_sign), grad_to_exec(source.grad_to_exec)
 {
     *this = source;
 }
@@ -87,10 +87,10 @@ std::ostream &operator<<(std::ostream &os, const Form &obj)
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return ("You pass the High grade");
+    return ("Hiegh grade value");
 }
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return ("You pass the Low grade");
+    return ("Low grade value");
 }

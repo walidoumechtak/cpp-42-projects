@@ -8,9 +8,9 @@ Bureaucrat::Bureaucrat() : name("BOOT"), grade(1)
 Bureaucrat::Bureaucrat(const std::string in_name, int in_grade) : name(in_name)
 {
     if (in_grade < 1)
-        throw Bureaucrat::GradeTooHighException("You pass the Hiegh grad");
+        throw Bureaucrat::GradeTooHighException("Hiegh grade value");
     else if (in_grade > 150)
-        throw Bureaucrat::GradeTooLowException("You pass the Low grad");
+        throw Bureaucrat::GradeTooLowException("Low grad value");
     this->grade = in_grade;
 }
 
@@ -120,4 +120,15 @@ void Bureaucrat::signForm(const AForm& source)
         std::cout << this->name << " signed " << source.getFormName() << std::endl;
     else
         std::cout << this->name << " couldn't sign " << source.getFormName() << " because ...., i think i forget" << std::endl;
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+    if (grade < form.getGradToExec())
+    {
+        form.execute(*this);
+        std::cout << this->name << " executed " << form.getFormName() << std::endl;
+    }
+    else
+        std::cout << "Couldn't execute the form ):" << std::endl;
 }
