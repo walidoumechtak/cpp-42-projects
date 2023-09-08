@@ -55,20 +55,55 @@ int main(void)
     AForm* rrf;
     Intern myIntern;
 
-    rrf = myIntern.makeForm("robotmy request", "walid");
-    if (!rrf)
-        return (1);
-    try
+    rrf = myIntern.makeForm("robotomy request", "walid");
+    if (rrf)
     {
-        Bureaucrat b1("amnine", 7);
-        rrf->beSigned(b1);
-        b1.executeForm(*rrf);
+        try
+        {
+            Bureaucrat b1("amine", 7);
+            rrf->beSigned(b1);
+            b1.executeForm(*rrf);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        delete rrf;  
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    delete rrf;  
     
-   
+    /* ================================================================================*/
+
+    rrf = myIntern.makeForm("Shrubbery Creation", "walid");
+    if (rrf)
+    {
+        try
+        {
+            Bureaucrat b2("walid", 1);
+            rrf->beSigned(b2);
+            b2.executeForm(*rrf);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        delete rrf;
+    }
+
+    /* ================================================================================*/
+    
+    rrf = myIntern.makeForm("Presidential Pardon", "walid");
+    if (rrf)
+    {
+        try
+        {
+            Bureaucrat b3("khalid", 4);
+            rrf->beSigned(b3);
+            b3.executeForm(*rrf);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        delete rrf;
+    }
 }

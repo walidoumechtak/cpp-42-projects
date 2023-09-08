@@ -126,8 +126,8 @@ void Bureaucrat::executeForm(AForm const &form)
 {
     if (grade < form.getGradToExec())
     {
-        form.execute(*this);
         std::cout << this->name << " executed " << form.getFormName() << std::endl;
+        form.execute(*this);
     }
     else
         std::cout << "Couldn't execute the form ):" << std::endl;

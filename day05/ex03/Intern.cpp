@@ -23,25 +23,38 @@ Intern::~Intern()
 {
 }
 
-AForm* Intern::makeForm(std::string f_name, std::string f_target)
+int    get_index(std::string in_name)
 {
-    char c = std::toupper(f_name[0]);
-    char arr[3] = {'S', 'R', 'P'};
-    AForm *ptr_arr[3] = {new ShrubberyCreationForm(f_target), new RobotomyRequestForm(f_target), new PresidentialPardonForm(f_target)};
-    AForm *ret;
+    std::string forms[3] = {"SHRUBBERY CREATION", "ROBOTOMY REQUEST", "PRESIDENTIAL PARDON"};
+    for (int j = 0; j < (int)in_name.length(); j++)
+    {
+        if (std::isalpha(in_name[j]))
+            in_name[j] = std::toupper(in_name[j]);
+    }
     for (int i = 0; i < 3; i++)
     {
-        if (arr[i] == c)
+        if (forms[i] == in_name)
+            return (i);
+    }
+    return (-1);
+}
+
+AForm* Intern::makeForm(std::string f_name, std::string f_target)
+{
+    int index = get_index(f_name);
+    AForm *ptr_arr[3] = {new ShrubberyCreationForm(f_target), new RobotomyRequestForm(f_target), new PresidentialPardonForm(f_target)};
+    AForm *ret;
+
+    if (index >= 0)
+    {
+        ret = ptr_arr[index];
+        for (int l = 0;  l < 3; l++)
         {
-            ret = ptr_arr[i];
-            for (int l = 0;  l < 3; l++)
-            {
-                if (i != l)
-                    delete ptr_arr[l];
-            }
-            std::cout << "Intern creates " << f_name << std::endl;
-            return (ret);
+            if (index != l)
+                delete ptr_arr[l];
         }
+        std::cout << "Intern creates " << f_name << std::endl;
+        return (ret);
     }
     for (int l = 0;  l < 3; l++)
         delete ptr_arr[l];
