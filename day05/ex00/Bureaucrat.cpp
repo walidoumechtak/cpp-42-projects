@@ -32,7 +32,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& source)
     }
     return (*this);
 }
-/* ********** End canonicla from ********** */
+/* ********** End canonical form ********** */
 
 int Bureaucrat::getGrade() const
 {
@@ -47,14 +47,14 @@ std::string Bureaucrat::getName() const
 void    Bureaucrat::incGrade()
 {
     if (this->grade == 1)
-        throw   Bureaucrat::GradeOutOfRange("The Grade is out of range");
+        throw Bureaucrat::GradeTooHighException("Hiegh grade value");
     this->grade--;
 }
 
 void    Bureaucrat::decGrade()
 {
     if (this->grade == 150)
-        throw Bureaucrat::GradeOutOfRange("The Grade is out of range");
+        throw Bureaucrat::GradeTooLowException("Low grade value");
     this->grade++;
 }
 
@@ -95,21 +95,3 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
     return (msg.c_str());
 }
-
-/* ---------- Thirt class ---------- */
-
-Bureaucrat::GradeOutOfRange::GradeOutOfRange(std::string in_msg)
-    : msg(in_msg)
-{
-}
-
-Bureaucrat::GradeOutOfRange::~GradeOutOfRange() throw()
-{
-}
-
-const char* Bureaucrat::GradeOutOfRange::what() const throw()
-{
-    return (msg.c_str());
-}
-
-

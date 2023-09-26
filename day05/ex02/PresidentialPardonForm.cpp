@@ -39,7 +39,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator= (const PresidentialPar
 void PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
     int grad = executor.getGrade();
-    if (grad < getGradToExec() && getIsSigned() == true)
+    if (grad <= getGradToExec() && getIsSigned() == true)
     {
         std::cout << target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
     }

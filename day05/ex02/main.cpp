@@ -26,7 +26,7 @@ int main(void)
     {
         RobotomyRequestForm r1("ROBOT");
 
-        Bureaucrat b2("med", 100);
+        Bureaucrat b2("med", 1);
         r1.beSigned(b2);
         b2.executeForm(r1);
     }

@@ -22,7 +22,7 @@ Form::Form(const std::string in_name, const int in_grad_sign, const int in_grad_
 Form::Form(const Form &source) 
     : form_name(source.form_name) ,grad_to_sign(source.grad_to_sign), grad_to_exec(source.grad_to_exec)
 {
-    *this = source;
+    this->is_signed = source.is_signed;
 }
 
 Form &Form::operator= (const Form& source)
@@ -30,6 +30,9 @@ Form &Form::operator= (const Form& source)
     if (this != &source)
     {
         this->is_signed = source.is_signed;
+        *const_cast<std::string*> (&this->form_name) = source.form_name;
+        *const_cast<int*> (&this->grad_to_exec) = source.grad_to_exec;
+        *const_cast<int*> (&this->grad_to_sign) = source.grad_to_sign;
     }
     return (*this);
 }
@@ -71,7 +74,7 @@ void Form::beSigned(const Bureaucrat &source)
         throw Form::GradeTooLowException();
 }
 
-std::ostream &operator<<(std::ostream &os, const Form &obj)
+std::ostream &operator<<(std::ostream &_cout, const Form &obj)
 {
     std::string is_sign;
 
@@ -79,8 +82,8 @@ std::ostream &operator<<(std::ostream &os, const Form &obj)
         is_sign = "signed";
     else
         is_sign = "not signed";
-    os << "The form: " << obj.getFormName() << " has grade to sign: " << obj.getGradToSign() << ", and grade to exec: " << obj.getGradToExec() << " and the state is: " << is_sign;
-    return (os);
+    _cout << "The form: " << obj.getFormName() << " has grade to sign: " << obj.getGradToSign() << ", and grade to exec: " << obj.getGradToExec() << ", the state is: " << is_sign;
+    return (_cout);
 }
 
 /* ========== start implement class exception ========== */

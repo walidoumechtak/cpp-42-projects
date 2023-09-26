@@ -33,7 +33,7 @@ int main(void)
 
     try
     {
-        Bureaucrat b3("Height", 0);
+        Bureaucrat b3("Hiegh", 0);
         std::cout << b3 << std::endl;
     }
     catch(const std::exception& e)

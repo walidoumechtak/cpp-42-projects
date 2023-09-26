@@ -29,16 +29,6 @@ class Bureaucrat
                     virtual const char* what() const throw();
             };
 
-            class GradeOutOfRange : public std::exception
-            {
-                private:
-                    std::string msg;
-                public:
-                    GradeOutOfRange(std::string in_msg);
-                    ~GradeOutOfRange() throw();
-                    virtual const char* what() const throw();
-            };
-
     private:
         const std::string name;
         int grade;

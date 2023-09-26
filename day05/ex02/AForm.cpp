@@ -22,7 +22,7 @@ AForm::AForm(const std::string in_name, const int in_grad_sign, const int in_gra
 AForm::AForm(const AForm &source) 
     :form_name(source.form_name), grad_to_sign(source.grad_to_sign), grad_to_exec(source.grad_to_exec)
 {
-    *this = source;
+    this->is_signed = source.is_signed;
 }
 
 AForm &AForm::operator= (const AForm& source)
@@ -30,6 +30,9 @@ AForm &AForm::operator= (const AForm& source)
     if (this != &source)
     {
         this->is_signed = source.is_signed;
+        *const_cast<std::string*> (&this->form_name) = source.form_name;
+        *const_cast<int*> (&this->grad_to_exec) = source.grad_to_exec;
+        *const_cast<int*> (&this->grad_to_sign) = source.grad_to_sign;
     }
     return (*this);
 }

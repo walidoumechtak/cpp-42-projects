@@ -1,6 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), target("D-target")
 {
 }
 
@@ -35,14 +35,15 @@ std::string RobotomyRequestForm::getTarget() const
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
     int grad = executor.getGrade();
-    if (grad < getGradToExec() && getIsSigned() == true)
+    if (grad <= getGradToExec() && getIsSigned() == true)
     {
+        std::cout << "drilling noises !!!! ";
         // put the random number generator with the current time using time() function
         std::srand(std::time(0));
         // Generate a random number between 1 and 100
         int randomNumber = (std::rand() % 100) + 1;
         if (randomNumber >= 50)
-            std::cout << target << " has been robotomized successfully 50% of the tim" << std::endl;
+            std::cout << target << " has been robotomized successfully 50% of the time" << std::endl;
         else
             std::cout << "the robotomy failed." << std::endl;
     }

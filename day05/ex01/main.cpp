@@ -22,7 +22,7 @@ int main(void)
     
     try
     {
-        // in this case the form has a grad to sign to heigh so an exception occure
+        // in this case the form has a grad to sign too heigh so an exception occure
         Bureaucrat b2("med", 10);
         Form f2("Cer2", 0, 100);
         f2.beSigned(b2);
