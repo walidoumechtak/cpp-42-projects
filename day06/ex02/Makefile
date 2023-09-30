@@ -1,5 +1,5 @@
 NAME = ex02
-FILES.c = Base.cpp A.cpp B.cpp C.cpp main.cpp generate.cpp\
+FILES.c = Base.cpp A.cpp B.cpp C.cpp main.cpp generate.cpp identify.cpp \
 
 FILES.o = ${FILES.c:.cpp=.o}
 
