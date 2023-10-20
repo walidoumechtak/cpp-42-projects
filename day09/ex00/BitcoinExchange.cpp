@@ -87,7 +87,7 @@ int check_date(std::string date)
     std::string month;
     std::string day;
 
-    size_t pos = data.find("-");
+    size_t pos = date.find("-", 1);
     if (pos == std::string::npos)
         return (-1);
 
@@ -99,12 +99,21 @@ int check_date(std::string date)
         return (-1);
     month = temp.substr(old_pos + 1, pos);
     day = temp.substr(pos + 1, temp.length());
-    
+    return (0);
 }
 
 int check_value(std::string value)
 {
+    //A valid value must be either a float or a positive integer, between 0 and 1000.
+    char *endptr;
+    double val = strtod(value.data(), &endptr);
 
+    if (endptr[0] != '\0' || endptr == value.data() || val < 0 || val > INT_MAX)
+    {
+        std::cerr << "Error: incorrect value: " << value << std::endl;
+        return (-1);
+    }
+    return (0);
 }
 
 void BitcoinExchange::parseInput()
@@ -132,7 +141,8 @@ void BitcoinExchange::parseInput()
         {
             int data_result = check_date(line.substr(0, pos - 1));
             int value_result = check_value(line.substr(pos + 2, line.length()));
-            (void) ret;
+            if (data_result == -1 || value_result == -1)
+                continue; // exit (1);
         }
     }
 }

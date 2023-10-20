@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <cstdlib>
 
 class BitcoinExchange
 {
