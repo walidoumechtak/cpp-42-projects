@@ -76,10 +76,9 @@ int count_element(std::string str, std::string target)
     line = str.data();
     ptr = strtok((char *)line, target.data());
     cpt++;
-    while (ptr)
+    while (strtok(NULL, target.data()))
     {
         cpt++;
-        strtok(NULL, " ")
     }
     return (cpt);
 }
@@ -107,7 +106,6 @@ int check_date(std::string date)
     size_t pos = date.find("-", 1);
     if (count_element(date, "-") != 3)
     {
-        std::cout << "element : " << count_element(date, "-") << std::endl;
         std::cout << "Error: invalid date format " << date << std::endl;
         return (-1);
     }
