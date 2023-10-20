@@ -67,39 +67,21 @@ void    BitcoinExchange::fill_data_map()
     // }
 }
 
-int count_element(std::string str)
+int count_element(std::string str, std::string target)
 {
     int cpt = 0;
     char *ptr;
     const char *line;
 
     line = str.data();
-    ptr = strtok((char *)line, " ");
+    ptr = strtok((char *)line, target.data());
     cpt++;
-    while (strtok(NULL, " "))
+    while (ptr)
+    {
         cpt++;
+        strtok(NULL, " ")
+    }
     return (cpt);
-}
-
-int check_date(std::string date)
-{
-    std::string year;
-    std::string month;
-    std::string day;
-
-    size_t pos = date.find("-", 1);
-    if (pos == std::string::npos)
-        return (-1);
-
-    year = date.substr(0, pos);
-    std::string temp = date.substr(pos + 1, date.length());
-    size_t  old_pos = pos;
-    pos = temp.find("-");
-    if (pos == std::string::npos)
-        return (-1);
-    month = temp.substr(old_pos + 1, pos);
-    day = temp.substr(pos + 1, temp.length());
-    return (0);
 }
 
 int check_value(std::string value)
@@ -110,11 +92,39 @@ int check_value(std::string value)
 
     if (endptr[0] != '\0' || endptr == value.data() || val < 0 || val > INT_MAX)
     {
-        std::cerr << "Error: incorrect value: " << value << std::endl;
+        //std::cerr << "Error: incorrect value: " << value << std::endl;
         return (-1);
     }
     return (0);
 }
+
+int check_date(std::string date)
+{
+    std::string year;
+    std::string month;
+    std::string day;
+
+    size_t pos = date.find("-", 1);
+    if (count_element(date, "-") != 3)
+    {
+        std::cout << "element : " << count_element(date, "-") << std::endl;
+        std::cout << "Error: invalid date format " << date << std::endl;
+        return (-1);
+    }
+    year = date.substr(0, pos);
+    std::string temp = date.substr(pos + 1, date.length());
+    pos = temp.find("-");
+    month = temp.substr(0, pos);
+    day = temp.substr(pos + 1, temp.length());
+    if (check_value(year) == -1 || check_value(month) == -1 || check_value(day) == -1)
+    {
+        std::cerr << "Erro: invalid date format " << date << std::endl;
+        return (-1);
+    }
+    return (0);
+}
+
+
 
 void BitcoinExchange::parseInput()
 {
@@ -125,7 +135,7 @@ void BitcoinExchange::parseInput()
     fill_data_map();
     while (getline(this->f_input, line))
     {
-        int cpt = count_element(line);
+        int cpt = count_element(line, " ");
         size_t  pos = line.find("|");
 
         if (line == "date | value")
@@ -141,8 +151,14 @@ void BitcoinExchange::parseInput()
         {
             int data_result = check_date(line.substr(0, pos - 1));
             int value_result = check_value(line.substr(pos + 2, line.length()));
-            if (data_result == -1 || value_result == -1)
+            if (value_result == -1)
+            {
+                std::cerr << "Error: incorrect value: " << line.substr(pos + 2, line.length()) << std::endl;
+                continue;
+            }
+            if (data_result == -1)
                 continue; // exit (1);
+            
         }
     }
 }
