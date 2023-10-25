@@ -24,7 +24,7 @@ void List()
     
     try
     {
-        easyfind(List, 1);
+        easyfind(List, 404);
     }
     catch(std::exception& e)
     {
@@ -35,5 +35,5 @@ void List()
 int main(void)
 {
     Vector();
-    // List();
+    List();
 }

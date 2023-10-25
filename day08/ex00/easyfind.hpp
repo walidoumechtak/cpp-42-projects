@@ -9,14 +9,17 @@
 #include <list>
 
 template <typename T>
-void easyfind(T container, int target)
+int easyfind(T container, int target)
 {
     typename T::iterator it = find(container.begin(), container.end(), target);
 
     if (it != container.end())
+    {
         std::cout << "The target found: " << *it << std::endl;
+        return *it;
+    }
     else
-        throw std::out_of_range("Element not found");
+        throw std::runtime_error("Element not found");
 }
 
 #endif
