@@ -1,4 +1,4 @@
-NAME = ex01
+NAME = ex02
 FILES.c = main.cpp \
 
 FILES.o = ${FILES.c:.cpp=.o}
