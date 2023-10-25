@@ -8,6 +8,24 @@ Span::Span(unsigned int _N) : N(_N), cpt(0)
 {
 }
 
+Span::Span(const Span &obj)
+{
+    *this = obj;
+}
+
+Span &Span::operator=(const Span &obj)
+{
+    // TODO: insert return statement here
+    if (this != &obj)
+    {
+        this->N = obj.N;
+        this->cpt = obj.cpt;
+        this->span = obj.span;
+        this->temp_span = obj.temp_span;
+    }
+    return *this;
+}
+
 Span::~Span()
 {
 }
@@ -46,19 +64,8 @@ int Span::longestSpan()
     return (temp_span[temp_span.size() - 1] - temp_span[0]);
 }
 
-// template <typename Iteri1, typename Iteri2>
-// void    Span::oneFill(std::vector<int>& source, Iteri1 I1, Iteri2 I2)
-// {
-//     this->span.insert(source, I1, I2);
-// }
-
-void Span::oneFill(std::vector<int>& source, std::vector<int>::iterator beg, std::vector<int>::iterator end)
+void Span::oneFill(std::vector<int>::iterator beg, std::vector<int>::iterator end)
 {
-    (void)source;
     this->span.insert(span.begin(), beg, end);
     this->temp_span.insert(temp_span.begin(), beg, end);
-    // std::cout << span.size() << std::endl;
-
-    // for (int i = 0; i < (int)span.size(); i++)
-    //     std::cout << span[i] << std::endl;
 }

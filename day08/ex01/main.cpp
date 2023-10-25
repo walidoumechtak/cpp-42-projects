@@ -31,18 +31,17 @@ void    oneCall()
         base.push_back(i);
 
     Span oneCall;
-    std::cout << "waht" << std::endl;
     std::vector<int>::iterator beg = base.begin();
     std::vector<int>::iterator end = base.end();
-    oneCall.oneFill(base, beg, end);
+    oneCall.oneFill(beg, end);
     std::cout << oneCall.shortestSpan() << std::endl;
     std::cout << oneCall.longestSpan() << std::endl;
 }
 
 int main()
 {
-    // subjectTest();
+    subjectTest();
     // BigNumber();
-    oneCall();
+    // oneCall();
    
 }
