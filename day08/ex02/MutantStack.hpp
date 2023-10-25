@@ -17,17 +17,16 @@ class MutantStack : public std::stack<T, Container>
         MutantStack &operator= (const MutantStack& obj)
         {
             if (this != &obj)
-                std::stack<T, Container>::operator=(obj);
+                this->c = obj.c;
+                // std::stack<T, Container>::operator=(obj);
             return (*this);
         }
 
-        //typedef typename std::deque<T>::iterator iterator;
-        // typedef typename std::stack<T>::container_type::iterator iterator;
         typedef typename Container::iterator iterator;
         
         iterator begin() { return this->c.begin(); }
         iterator end() { return this->c.end(); }
-        
+
 };
 
 
