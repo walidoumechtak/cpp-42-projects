@@ -15,7 +15,6 @@ Span::Span(const Span &obj)
 
 Span &Span::operator=(const Span &obj)
 {
-    // TODO: insert return statement here
     if (this != &obj)
     {
         this->N = obj.N;

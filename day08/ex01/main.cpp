@@ -10,8 +10,8 @@ void subjectTest()
     sp.addNumber(9);
     sp.addNumber(11);
 
-    std::cout << sp.shortestSpan() << std::endl;
-    std::cout << sp.longestSpan() << std::endl;
+    std::cout << "Shortest Span: " << sp.shortestSpan() << std::endl;
+    std::cout << "Longest Span: " << sp.longestSpan() << std::endl;
 }
 
 void BigNumber()
@@ -20,8 +20,8 @@ void BigNumber()
 
     for (int i = 0; i < 20000; i++)
         bigSpan.addNumber(i + 1);
-    std::cout << bigSpan.shortestSpan() << std::endl;
-    std::cout << bigSpan.longestSpan() << std::endl;
+    std::cout <<  "Shortest Span: " << bigSpan.shortestSpan() << std::endl;
+    std::cout << "Longest Span: " << bigSpan.longestSpan() << std::endl;
 }
 
 void    oneCall()
@@ -34,14 +34,16 @@ void    oneCall()
     std::vector<int>::iterator beg = base.begin();
     std::vector<int>::iterator end = base.end();
     oneCall.oneFill(beg, end);
-    std::cout << oneCall.shortestSpan() << std::endl;
-    std::cout << oneCall.longestSpan() << std::endl;
+    std::cout <<  "Shortest Span: " << oneCall.shortestSpan() << std::endl;
+    std::cout << "Longest Span: " << oneCall.longestSpan() << std::endl;
 }
 
 int main()
 {
     subjectTest();
-    // BigNumber();
-    // oneCall();
+    std::cout << "----------------------" << std::endl;
+    BigNumber();
+    std::cout << "----------------------" << std::endl;
+    oneCall();
    
 }
