@@ -3,12 +3,10 @@
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange(std::string in_file) : file(in_file) {}
 BitcoinExchange::~BitcoinExchange() {}
-
 BitcoinExchange::BitcoinExchange(const BitcoinExchange & source)
 {
     *this = source;
 }
-
 BitcoinExchange &BitcoinExchange::operator= (const BitcoinExchange& source)
 {
     if (this != &source)
@@ -83,13 +81,13 @@ int count_element(std::string str, std::string target)
     return (cpt);
 }
 
-int check_value(std::string value)
+int check_value(std::string value, std::string controller)
 {
     //A valid value must be either a float or a positive integer, between 0 and 1000.
     char *endptr;
     double val = strtod(value.data(), &endptr);
 
-    if (endptr[0] != '\0' || endptr == value.data() || val < 0 || val > INT_MAX)
+    if (endptr[0] != '\0' || endptr == value.data() || val < 0 || val > INT_MAX || (controller == "val" && val > 1000))
     {
         //std::cerr << "Error: incorrect value: " << value << std::endl;
         return (-1);
@@ -97,14 +95,30 @@ int check_value(std::string value)
     return (0);
 }
 
+/*
+January - 31 days
+February - 28 days in a common year and 29 days in leap years
+March - 31 days
+April - 30 days
+May - 31 days
+June - 30 days
+July - 31 days
+August - 31 days
+September - 30 days
+October - 31 days
+November - 30 days
+December - 31 days
+*/
+
 int check_date(std::string date)
 {
     std::string year;
     std::string month;
     std::string day;
+    int arr[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     size_t pos = date.find("-", 1);
-    if (count_element(date, "-") != 3)
+    if (count_element(date, "-") != 3 || date.length() != 10)
     {
         std::cout << "Error: invalid date format " << date << std::endl;
         return (-1);
@@ -114,7 +128,13 @@ int check_date(std::string date)
     pos = temp.find("-");
     month = temp.substr(0, pos);
     day = temp.substr(pos + 1, temp.length());
-    if (check_value(year) == -1 || check_value(month) == -1 || check_value(day) == -1)
+    int day_int = strtod(day.data(), NULL);
+    int month_int = strtod(month.data(), NULL);
+    int year_int = strtod(year.data(), NULL);
+    if (month_int == 2 && year_int % 4 == 0)
+        arr[1] = 29;
+    if ((month_int) > 12 || check_value(year, "non") == -1 || check_value(month, "non") == -1 
+        || check_value(day, "non") == -1 || arr[month_int] < day_int)
     {
         std::cerr << "Erro: invalid date format " << date << std::endl;
         return (-1);
@@ -148,14 +168,14 @@ void BitcoinExchange::parseInput()
         else
         {
             int data_result = check_date(line.substr(0, pos - 1));
-            int value_result = check_value(line.substr(pos + 2, line.length()));
+            int value_result = check_value(line.substr(pos + 2, line.length()), "val");
             if (value_result == -1)
             {
                 std::cerr << "Error: incorrect value: " << line.substr(pos + 2, line.length()) << std::endl;
                 continue;
             }
             if (data_result == -1)
-                continue; // exit (1);
+                continue;
             
         }
     }
