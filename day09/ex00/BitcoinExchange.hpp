@@ -6,6 +6,7 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <limits.h>
 
 class BitcoinExchange
 {

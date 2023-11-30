@@ -26,7 +26,7 @@ void    BitcoinExchange::openFiles()
         std::cerr << "Error: file was not opened!" << std::endl;
         exit(1);
     }
-    this->f_input.open(this->file);
+    this->f_input.open(this->file.c_str());
     if (!this->f_input.is_open())
     {
         std::cerr << "Error: file was not opened!" << std::endl;
@@ -167,16 +167,61 @@ void BitcoinExchange::parseInput()
             std::cerr << "Error: bad input => " << line << std::endl;
         else
         {
-            int data_result = check_date(line.substr(0, pos - 1));
+            int date_result = check_date(line.substr(0, pos - 1));
             int value_result = check_value(line.substr(pos + 2, line.length()), "val");
             if (value_result == -1)
             {
                 std::cerr << "Error: incorrect value: " << line.substr(pos + 2, line.length()) << std::endl;
                 continue;
             }
-            if (data_result == -1)
+            if (date_result == -1)
                 continue;
-            
+            // std::map<std::string, std::string>::iterator it_data = data.begin(); 
+            // std::map<std::string, std::string>::iterator it_input = input.begin();
+            std::string dateInput = line.substr(0, pos - 1);
+            // std::cout << "--> " << dateInput << std::endl;
+            std::map<std::string, std::string>::iterator it = data.find(dateInput);
+            if (it == data.end())
+            {
+                std::cout << "--> " << dateInput  << std::endl;
+                data.insert(std::make_pair(dateInput, "0"));
+                it = data.find(dateInput);
+                --it;
+            }
+            // if (it == data.end())
+            // {
+            //     dateInput = line.substr(0, 7);
+            //     for (; it != data.end(); ++it)
+            //     {
+            //         if (it->first.find(dateInput) != std::string::npos)
+            //             break;
+            //     }
+            //     // std::cout << "--> " << dateInput << std::endl;
+            //     // it = data.find(dateInput);
+            // }
+            // if (it == data.end())
+            // {
+            //     dateInput = line.substr(0, 4);
+            //     it = data.begin();
+            //     for (; it != data.end(); ++it)
+            //     {
+            //         if (it->first.find(dateInput) != std::string::npos)
+            //             break;
+            //     }
+            //     // it = data.find(dateInput);
+            // }
+            if (it != data.end())
+            {
+                // std::cout << "was here" << std::endl;
+                double valFromData = strtod(it->second.c_str(), NULL);
+                double valFromInput = strtod(line.substr(pos + 2, line.length()).c_str(), NULL);
+
+                std::cout << line.substr(0, pos - 1);
+                std::cout << " => ";
+                std::cout << valFromInput;
+                std::cout << " = ";
+                std::cout << valFromData * valFromInput << std::endl;
+            }
         }
     }
 }
