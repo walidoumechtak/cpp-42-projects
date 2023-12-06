@@ -45,7 +45,6 @@ void    BitcoinExchange::fill_data_map()
     std::string line;
     std::string date;
     std::string value;
-    // 2023-12-12,5
     while (getline(this->f_data, line))
     {
         if (line == "date,exchange_rate")
@@ -58,11 +57,6 @@ void    BitcoinExchange::fill_data_map()
             this->data.insert(std::pair<std::string ,std::string> (date, value));
         }
     }
-    // std::map<std::string, std::string>::iterator it = this->data.begin();
-    // for (;it != this->data.end(); ++it)
-    // {
-    //     std::cout << it->first << " : " << it->second << std::endl;
-    // }
 }
 
 int count_element(std::string str, std::string target)
@@ -89,7 +83,6 @@ int check_value(std::string value, std::string controller)
 
     if (endptr[0] != '\0' || endptr == value.data() || val < 0 || val > INT_MAX || (controller == "val" && val > 1000))
     {
-        //std::cerr << "Error: incorrect value: " << value << std::endl;
         return (-1);
     }
     return (0);
@@ -176,43 +169,16 @@ void BitcoinExchange::parseInput()
             }
             if (date_result == -1)
                 continue;
-            // std::map<std::string, std::string>::iterator it_data = data.begin(); 
-            // std::map<std::string, std::string>::iterator it_input = input.begin();
             std::string dateInput = line.substr(0, pos - 1);
-            // std::cout << "--> " << dateInput << std::endl;
             std::map<std::string, std::string>::iterator it = data.find(dateInput);
             if (it == data.end())
             {
-                std::cout << "--> " << dateInput  << std::endl;
                 data.insert(std::make_pair(dateInput, "0"));
                 it = data.find(dateInput);
                 --it;
             }
-            // if (it == data.end())
-            // {
-            //     dateInput = line.substr(0, 7);
-            //     for (; it != data.end(); ++it)
-            //     {
-            //         if (it->first.find(dateInput) != std::string::npos)
-            //             break;
-            //     }
-            //     // std::cout << "--> " << dateInput << std::endl;
-            //     // it = data.find(dateInput);
-            // }
-            // if (it == data.end())
-            // {
-            //     dateInput = line.substr(0, 4);
-            //     it = data.begin();
-            //     for (; it != data.end(); ++it)
-            //     {
-            //         if (it->first.find(dateInput) != std::string::npos)
-            //             break;
-            //     }
-            //     // it = data.find(dateInput);
-            // }
             if (it != data.end())
             {
-                // std::cout << "was here" << std::endl;
                 double valFromData = strtod(it->second.c_str(), NULL);
                 double valFromInput = strtod(line.substr(pos + 2, line.length()).c_str(), NULL);
 
@@ -221,6 +187,7 @@ void BitcoinExchange::parseInput()
                 std::cout << valFromInput;
                 std::cout << " = ";
                 std::cout << valFromData * valFromInput << std::endl;
+                data.erase(++it);
             }
         }
     }
