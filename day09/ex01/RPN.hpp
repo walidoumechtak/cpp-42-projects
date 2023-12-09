@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <stack>
+#include <stdlib.h>
+#include <sstream>
 
 void run(char *str);
 

@@ -2,77 +2,90 @@
 
 bool parseTheExpr(std::string expr)
 {
-    std::string allowedChar = "0123456789+-*/";
+    std::string allowedChar = "0123456789+-*/ ";
     for (int i = 0; i < (int)expr.length(); i++)
     {
         if (allowedChar.find(expr.at(i)) == std::string::npos)
+        {
             return false;
+        }
     }
     return true;
 }
 
-void    operation()
-
-void proccessTheExpr(std::string &expr)
+void    operations(std::stack<int> &container, std::string element)
 {
-    std::stack<int> container;
-    std::string temp = expr;
-    size_t  pos;
-    std::string element;
-    int num;
-    int n1, n2;
-    for (;;)
+    int num, res, n1, n2;
+
+    if (container.size() < 2)
+        throw std::runtime_error("Error: The container dosen't have enough data!");
+    n2 = container.top();
+    container.pop();
+    n1 = container.top();
+    container.pop();
+    if (element == "+")
     {
-        pos = temp.find(" ");
-        if (pos == std::string::npos)
+        res = n1 + n2;
+        container.push(res);
+    }
+    else if (element == "-")
+    {
+        res = n1 - n2;
+        container.push(res);
+    }
+    else if (element == "*")
+    {
+        res = n1 * n2;
+        container.push(res);
+    } 
+    else if (element == "/")
+    {
+        if (n2 == 0)
+            throw std::runtime_error("Can't devide by 0 !!!");
+        res = n1 / n2;
+        container.push(res);
+    }
+    else
+    {
+        num = strtod(element.c_str(), NULL);
+        container.push(num);
+    }
+}
+
+void proccessTheExpr(std::string &expr, std::stack<int> &container)
+{
+    std::string temp = expr;
+    std::stringstream ss(temp);
+    std::string token;
+    std::stack<std::string> tokens;
+    int element;
+
+    while (getline(ss, token, ' '))
+    {
+        // tokens.push(token);
+        if (isdigit(token[0]) != 0)
         {
-            if (temp.length() == 0)
-                break;
+            std::cout << "number is: " << token[0] << std::endl;
+            element = strtod(token.c_str(), NULL);
+            container.push(element);
         }
         else
-        {
-            element = temp.substr(0, pos);
-            temp = temp.substr(pos);
-            if (element == "+")
-            {
-                if (container.size() < 2)
-                    throw std::runtime_error("Error: The container dosen't have enough data!");
-                n1 = container.top();
-                container.pop();
-                n2 = container.top();
-                container.pop();
-            }
-            else if (element == "-")
-            {
-                if (container.size() < 2)
-                    throw std::runtime_error("Error: The container dosen't have enough data!");
-            }
-            else if (element == "*")
-            {
-                if (container.size() < 2)
-                    throw std::runtime_error("Error: The container dosen't have enough data!");
-            }
-            else if (element == "/")
-            {
-                if (container.size() < 2)
-                    throw std::runtime_error("Error: The container dosen't have enough data!");
-            }
-            else
-            {
-                num = strtod(element.c_str(), NULL);
-                container.push(num);
-            }
-        }
-        if (temp.length() == 0)
-            break;
+            operations(container, token);
     }
 }
 
 void run(char *str)
 {
     std::string expr(str);
-
+    std::stack<int> container;
+    
     if (parseTheExpr(expr) == false)
         throw std::runtime_error("the argumnet is not valid << Forbiden character >>!");
-    proccessTheExpr(expr);
+    else if (expr.length() < 3)
+        throw std::runtime_error("The argument yuo provide is incorrect!");
+    proccessTheExpr(expr, container);
+    if (container.size() > 1)
+        throw std::runtime_error("The RPN failed successfuly hhh!!!");
+    else if (container.size() != 0)
+        std::cout << container.top() << std::endl;
 }
