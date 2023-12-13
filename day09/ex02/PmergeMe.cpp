@@ -16,9 +16,3 @@ void    parseTheInput(char **av, int ac)
         }
     } 
 }
-
-
-void    run()
-{
-
-}

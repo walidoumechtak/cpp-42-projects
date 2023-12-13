@@ -4,10 +4,12 @@ int main(int ac, char **av)
 {
     if (ac > 1)
     {
+        std::vector<int> data;
         try
         {
             parseTheInput(av, ac);
-            run();
+            fillTheData(data, av, ac);
+            run(data);
         }
         catch(std::exception &e)
         {
