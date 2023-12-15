@@ -127,30 +127,54 @@ int check_date(std::string date)
     if (month_int == 2 && year_int % 4 == 0)
         arr[1] = 29;
     if ((month_int) > 12 || check_value(year, "non") == -1 || check_value(month, "non") == -1 
-        || check_value(day, "non") == -1 || arr[month_int] < day_int)
+        || check_value(day, "non") == -1 || arr[month_int - 1] < day_int)
     {
-        std::cerr << "Erro: invalid date format " << date << std::endl;
+        std::cerr << "Error: invalid date format " << date << std::endl;
         return (-1);
     }
     return (0);
 }
 
-
+bool isOnlyWhiteSpaces(const std::string &str)
+{
+    for (int i = 0; i < (int)str.length(); i++)
+    {
+        if (!isspace(str[i]))
+            return false;
+    }
+    return true;
+}
 
 void BitcoinExchange::parseInput()
 {
     std::string date;
     std::string value;
     std::string line;
+    std::string first_line;
+    std::string small_date;
+    std::string big_date;
+    std::map<std::string, std::string>::iterator it;
 
     fill_data_map();
+    it = data.end();
+    small_date = data.begin()->first;
+    --it;
+    big_date = it->first;
+    getline(this->f_input, first_line);
+    if (first_line.length() <= 0 || first_line != "date | value")
+    {
+        std::cerr << "Error: check the form of your input file!" << std::endl;
+        return;
+    }
+   
     while (getline(this->f_input, line))
     {
         int cpt = count_element(line, " ");
         size_t  pos = line.find("|");
 
-        if (line == "date | value")
+        if (line == "date | value" || line.length() == 0 || isOnlyWhiteSpaces(line))
             continue;
+        date = line.substr(0, pos - 1);
         /**
          * check if | not found 
          * or there is more than one space before and after |
@@ -158,9 +182,14 @@ void BitcoinExchange::parseInput()
         */
         if (pos == std::string::npos || (line[pos - 2] == ' ' || line[pos + 2] == ' ') || cpt != 3)
             std::cerr << "Error: bad input => " << line << std::endl;
+        else if (date >= big_date || date <= small_date)
+        {
+            std::cerr << "Error: please enter a date between: [ " << small_date << ", " << big_date << " ]" << std::endl;
+            continue;
+        }
         else
         {
-            int date_result = check_date(line.substr(0, pos - 1));
+            int date_result = check_date(date);
             int value_result = check_value(line.substr(pos + 2, line.length()), "val");
             if (value_result == -1)
             {
@@ -192,7 +221,7 @@ void BitcoinExchange::parseInput()
         }
     }
 }
-
+// small and big date.
 void BitcoinExchange::run()
 {
     openFiles();
