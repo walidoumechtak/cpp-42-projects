@@ -1,5 +1,7 @@
 #include "RPN.hpp"
 
+
+
 bool parseTheExpr(std::string expr)
 {
     std::string allowedChar = "0123456789+-*/ ";
@@ -62,10 +64,10 @@ void proccessTheExpr(std::string &expr, std::stack<int> &container)
 
     while (getline(ss, token, ' '))
     {
-        // tokens.push(token);
+        if (token.length() == 0)
+            continue;
         if (isdigit(token[0]) != 0)
         {
-            std::cout << "number is: " << token[0] << std::endl;
             element = strtod(token.c_str(), NULL);
             container.push(element);
         }
