@@ -9,7 +9,7 @@ DEBUGFLAGS  = -g3
 SANFLAG = -fsanitize=address
 ERRFLAG = -Wall -Wextra -Werror
 
-CPPFLAGS= $(ERRFLAG) $(SFLAGS)
+CPPFLAGS= $(ERRFLAG) $(SFLAGS) $(SANFLAG)
 
 $(NAME): $(FILES.o)
 	$(CXX) $(CPPFLAGS) $(FILES.o) -o $(NAME)

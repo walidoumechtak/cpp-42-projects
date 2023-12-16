@@ -13,6 +13,8 @@
 #include <iostream>
 #include <exception>
 #include <vector>
+#include <deque>
+#include <ctime>
 
 void    parseTheInput(char **av, int ac);
 
@@ -41,15 +43,11 @@ void    splitArray(Container &data, Container &small, Container &big)
 }
 
 template <typename Container>
-void print(Container big, Container small)
+void print(Container big)
 {
     for (int i = 0; i < (int)big.size(); i++)
         std::cout << big.at(i) << " ";
-    std::cout << std::endl << std::endl;
-    (void) small;
-    // for (int i = 0; i < (int)small.size(); i++)
-    //     std::cout << small.at(i);
-    // std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 template <typename Container>
@@ -75,33 +73,25 @@ void    merge(Container &big, int s, int mid, int end)
     int i = 0;
     int j = 0;
 
-    // big.clear();
-    // big.erase(big.begin() + s, big.end() - end);
     for (; i < (int)left.size() && j < (int)right.size();)
     {
         if (left.at(i) < right.at(j))
         {
             big[k] = left.at(i);
-            // big.push_back(left.at(i));
-            // left.erase(left.begin() + i);
             k++;
             i++;
         }
         else
         {
             big[k] = right.at(j);
-            // big.push_back(right.at(j));
-            // right.erase(right.begin() + j);
             k++;
             j++;
         }
     }
     for (; i < (int)left.size(); i++)
         big[k++] = left.at(i);
-        // big.push_back(left.at(i));
     for (; j < (int)right.size(); j++)
         big[k++] = right.at(j);
-        // big.push_back(right.at(i));
 }
 
 
@@ -134,15 +124,18 @@ void insertion(Container &big, Container small)
 }
 
 template <typename Container>
-void    run(Container &data)
+Container    run(Container &data)
 {
     Container small;
     Container big;
 
+
     splitArray(data, small, big);
     sortBig(big, 0, (int)big.size() - 1);
     insertion(big, small);
-    print(big, small);
+    std::cout << "after:\t"; // print data after sorting.
+    print(big);
+    return big;
 }
 
 template <typename Container>

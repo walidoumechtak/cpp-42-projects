@@ -9,9 +9,9 @@ void    parseTheInput(char **av, int ac)
         {
             throw std::runtime_error("Invalid argument detected!");
         }
-        for (int j = 0; j < (int)arg.length(); j++)
+        for (int j = 0; j < (int)arg.length();)
         {
-            if (!std::isdigit(arg[j]) && arg[0] != '+')
+            if (!std::isdigit(arg[j++]))
                 throw std::runtime_error("Invalid argument detected!");
         }
     } 
